@@ -5,7 +5,7 @@ import PlayerPage from "../playerPage/playerPage";
 
 function PlayerStats() {
     return (
-                <Table borderless={true}>
+                <Table borderless={true} responsive="sm">
                     <thead>
                     <tr>
                         <th scope='col'></th>
