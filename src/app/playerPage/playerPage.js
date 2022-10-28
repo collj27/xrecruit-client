@@ -41,7 +41,7 @@ function PlayerPage(props) {
     return (
         <Container fluid="md">
             <Row className="justify-content-center">
-                <Col xl={3} xs={6} className="mt-5">
+                <Col xl={3}  className="mt-5">
                     <Card>
                         {/*TODO: figure out proper image size*/}
                         <Card.Img variant="top" src={archie_manning} fluid={true}/>
@@ -67,7 +67,7 @@ function PlayerPage(props) {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col xl={4} xs={6} className="mt-5">
+                <Col xl={4} className="mt-5">
                     <Card>
                         <Card.Body>
                             <Card.Title><span>About</span></Card.Title>
