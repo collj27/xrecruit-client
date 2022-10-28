@@ -12,6 +12,8 @@ import '../app.css'
 import {ArrowRight} from "react-bootstrap-icons";
 
 function PlayerPage(props) {
+    const baseURl = "https://x-recruit-api.herokuapp.com"
+
     // usestate for setting a javascript
     // object for storing and using data
     //TODO: is this the best place to call api??
@@ -26,7 +28,7 @@ function PlayerPage(props) {
     useEffect(() => {
         // Using fetch to fetch the api from
         // flask server it will be redirected to proxy
-        fetch("/players_by_id").then((res) =>
+        fetch(baseURl + "/players_by_id").then((res) =>
             res.json().then((data) => {
                 // Setting a data from api
                 setdata({
