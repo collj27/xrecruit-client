@@ -1,0 +1,51 @@
+/* Navbar */
+.navbar {
+    font-family: 'Jura', 'Inter', sans-serif;
+    background: #1D1D1D;
+    font-size: 18px;
+}
+
+.nav-link > span{
+    color: #CFCECE;
+}
+
+.navbar-brand > span{
+    color: white;
+    border-bottom: 4px solid #7FE29B;
+    padding-bottom: 0px;
+}
+
+/* Cards */
+.card {
+    /*width: 100%;*/
+    height: 100% !important; /*TODO: figure out why this is overwritten and remove !important*/
+}
+
+.card .card-img-top {
+    object-fit: cover !important;
+}
+.card .card-body {
+    background: #F1F1F1;
+}
+
+.card .card-body .card-title > span{
+    border-bottom: 4px solid #7FE29B;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+/*Donate Button*/
+.app-donate-button {
+    /* dont allow donate button style to be overwritten*/
+    background-color: #7FE29B   !important;
+    border-color: #7FE29B       !important;
+    color: #1D1D1D              !important;
+    font-family: 'Jura'         !important;
+    font-size: 24px             !important;
+    font-weight: 700            !important;
+}
+
+
+
+
+

@@ -1,0 +1,8 @@
+/*override default video width*/
+.playerPage-video {
+    width:100% !important;
+}
+
+.playerPage-attribute-title {
+    color: #7A7A7A;
+}
