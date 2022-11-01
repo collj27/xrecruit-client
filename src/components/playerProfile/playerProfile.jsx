@@ -1,8 +1,8 @@
 import archie_manning from "../../images/archie_manning.jpeg";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import './playerPage.css'
-import PlayerStats from '../playerStats/playerStats';
+import './playerProfile.css'
+import PlayerStats from './playerStats/playerStats';
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import ReactPlayer from "react-player";
@@ -10,50 +10,52 @@ import {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
 import '../app.css'
 import {ArrowRight} from "react-bootstrap-icons";
-import Parse from 'parse/dist/parse.min.js';
+import {fetchPlayerByObjectId} from "../../services/playerService";
+import {calculateAge} from "../../utils/utils";
 
 
-function PlayerPage(props) {
+function PlayerProfile() {
     const [player, setPlayer] = useState(null);
-    async function fetchPlayer() {
-        const query = new Parse.Query('Player');
-        query.equalTo('firstName', 'Archie');
 
-        // run the query
-        const data = await query.first();
-
-        return data
-    }
-
+    /*TODO: prevent from being called twice*/
     useEffect(() => {
-        fetchPlayer().then(async (data) => {
-             setPlayer(data);
-        })
+        fetchPlayerByObjectId("t7sAyTpiPM")
+            .then((data) => {
+                setPlayer({
+                    firstName: data.get('firstName'),
+                    lastName: data.get('lastName'),
+                    height:  data.get('height'),
+                    weight: data.get('weight'),
+                    age: calculateAge(data.get('dateOfBirth')),
+                    highSchool:  data.get('highSchool'),
+                    description:  data.get('description')
+                });
+            })
     }, []);
     return (
         <Container fluid="md">
-          <Row className="justify-content-center">
-                <Col xl={3}  className="mt-5">
+            <Row className="justify-content-center">
+                <Col xl={3} className="mt-5">
                     <Card>
                         {/*TODO: figure out proper image size}*/}
                         <Card.Img variant="top" src={archie_manning} fluid={"true"}/>
                         <Card.Body>
                             <Card.Title>
-                                <span>{player?.get('firstName')} </span>
-                                <span>{player?.get('lastName')}</span>
+                                <span>{player?.firstName}</span>
+                                <span>{player?.lastName}</span>
                             </Card.Title>
                             <Card.Text>
                                 <Row>
                                     <Col><span className="playerPage-attribute-title">HT/WT</span></Col>
-                                    <Col><span>5'10" 226 lbs</span></Col>
+                                    <Col><span>{player?.height} {player?.weight}</span></Col>
                                 </Row>
                                 <Row>
                                     <Col><span className="playerPage-attribute-title">Age</span></Col>
-                                    <Col><span>23</span></Col>
+                                    <Col><span>{player?.age}</span></Col>
                                 </Row>
                                 <Row>
                                     <Col><span className="playerPage-attribute-title">High School</span></Col>
-                                    <Col><span>Ohio High</span></Col>
+                                    <Col><span>{player?.highSchool}</span></Col>
                                 </Row>
                             </Card.Text>
                         </Card.Body>
@@ -63,7 +65,7 @@ function PlayerPage(props) {
                     <Card>
                         <Card.Body>
                             <Card.Title><span>About</span></Card.Title>
-                            <Card.Text>{player?.get('description')}</Card.Text>
+                            <Card.Text>{player?.description}</Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -109,4 +111,4 @@ function PlayerPage(props) {
     );
 }
 
-export default PlayerPage;
+export default PlayerProfile;

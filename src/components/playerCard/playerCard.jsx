@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 //import StarRating from 'react-svg-star-rating' //]
-import PlayerPage from "../playerPage/playerPage";
+import PlayerProfile from "../playerProfile/playerProfile";
 import {useState} from "react";
 
 
@@ -37,7 +37,7 @@ function PlayerCard() {
                     </Card>
                 </Col>
             </Row>
-            <PlayerPage showInfo={showPlayerInfo} closePlayerInfo={closePlayerInfo}/>
+            <PlayerProfile showInfo={showPlayerInfo} closePlayerInfo={closePlayerInfo}/>
         </Container>
     );
 }
