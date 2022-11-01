@@ -14,6 +14,9 @@ import {fetchPlayerByObjectId} from "../../services/playerService";
 import {calculateAge} from "../../utils/utils";
 
 
+// video
+// auth
+
 function PlayerProfile() {
     const [player, setPlayer] = useState(null);
 
@@ -22,13 +25,15 @@ function PlayerProfile() {
         fetchPlayerByObjectId("t7sAyTpiPM")
             .then((data) => {
                 setPlayer({
+                    profilePicUrl: data.get("profilePic")._url,
                     firstName: data.get('firstName'),
                     lastName: data.get('lastName'),
                     height:  data.get('height'),
                     weight: data.get('weight'),
                     age: calculateAge(data.get('dateOfBirth')),
                     highSchool:  data.get('highSchool'),
-                    description:  data.get('description')
+                    description:  data.get('description'),
+                    videoUrl: data.get('videoUrl')
                 });
             })
     }, []);
@@ -38,7 +43,7 @@ function PlayerProfile() {
                 <Col xl={3} className="mt-5">
                     <Card>
                         {/*TODO: figure out proper image size}*/}
-                        <Card.Img variant="top" src={archie_manning} fluid={"true"}/>
+                        <Card.Img variant="top" src={player?.profilePicUrl} fluid={"true"}/>
                         <Card.Body>
                             <Card.Title>
                                 <span>{player?.firstName}</span>
@@ -90,8 +95,7 @@ function PlayerProfile() {
                 <Col className="mt-5">
                     <Row>
                         <Col className="align-items-end">
-                            <ReactPlayer className="playerPage-video"
-                                         url='https://www.youtube.com/watch?v=JWVQF5_gkfk'/>
+                            <ReactPlayer className="playerPage-video" url={player?.videoUrl}/>
                         </Col>
                     </Row>
                     <Row className="mt-2 justify-content-end">
