@@ -1,4 +1,3 @@
-import archie_manning from "../../images/archie_manning.jpeg";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './playerProfile.css'
@@ -14,7 +13,6 @@ import {fetchPlayerByObjectId} from "../../services/playerService";
 import {calculateAge} from "../../utils/utils";
 
 
-// video
 // auth
 
 function PlayerProfile() {
@@ -28,11 +26,11 @@ function PlayerProfile() {
                     profilePicUrl: data.get("profilePic")._url,
                     firstName: data.get('firstName'),
                     lastName: data.get('lastName'),
-                    height:  data.get('height'),
+                    height: data.get('height'),
                     weight: data.get('weight'),
                     age: calculateAge(data.get('dateOfBirth')),
-                    highSchool:  data.get('highSchool'),
-                    description:  data.get('description'),
+                    highSchool: data.get('highSchool'),
+                    description: data.get('description'),
                     videoUrl: data.get('videoUrl')
                 });
             })
@@ -49,20 +47,18 @@ function PlayerProfile() {
                                 <span>{player?.firstName}</span>
                                 <span>{player?.lastName}</span>
                             </Card.Title>
-                            <Card.Text>
-                                <Row>
-                                    <Col><span className="playerPage-attribute-title">HT/WT</span></Col>
-                                    <Col><span>{player?.height} {player?.weight}</span></Col>
-                                </Row>
-                                <Row>
-                                    <Col><span className="playerPage-attribute-title">Age</span></Col>
-                                    <Col><span>{player?.age}</span></Col>
-                                </Row>
-                                <Row>
-                                    <Col><span className="playerPage-attribute-title">High School</span></Col>
-                                    <Col><span>{player?.highSchool}</span></Col>
-                                </Row>
-                            </Card.Text>
+                            <Row>
+                                <Col><span className="playerPage-attribute-title">HT/WT</span></Col>
+                                <Col><span>{player?.height} {player?.weight}</span></Col>
+                            </Row>
+                            <Row>
+                                <Col><span className="playerPage-attribute-title">Age</span></Col>
+                                <Col><span>{player?.age}</span></Col>
+                            </Row>
+                            <Row>
+                                <Col><span className="playerPage-attribute-title">High School</span></Col>
+                                <Col><span>{player?.highSchool}</span></Col>
+                            </Row>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -78,7 +74,7 @@ function PlayerProfile() {
                     <Card>
                         <Card.Body>
                             <Card.Title><span>Stats</span></Card.Title>
-                            <Card.Text><PlayerStats></PlayerStats></Card.Text>
+                            <PlayerStats></PlayerStats>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -88,7 +84,6 @@ function PlayerProfile() {
                     <Card>
                         <Card.Body>
                             <Card.Title><span>Funding</span></Card.Title>
-                            <Card.Text></Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
