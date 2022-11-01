@@ -10,47 +10,37 @@ import {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
 import '../app.css'
 import {ArrowRight} from "react-bootstrap-icons";
+import Parse from 'parse/dist/parse.min.js';
+
 
 function PlayerPage(props) {
-    const baseURl = "https://x-recruit-api.herokuapp.com"
+    const [player, setPlayer] = useState(null);
+    async function fetchPlayer() {
+        const query = new Parse.Query('Player');
+        query.equalTo('firstName', 'Archie');
 
-    // usestate for setting a javascript
-    // object for storing and using data
-    //TODO: is this the best place to call api??
-    const [data, setdata] = useState({
-        position: "",
-        firstName: "",
-        lastName: "",
-        description: "",
-    });
+        // run the query
+        const data = await query.first();
 
-    // Using useEffect for single rendering
+        return data
+    }
+
     useEffect(() => {
-        // Using fetch to fetch the api from
-        // flask server it will be redirected to proxy
-        fetch(baseURl + "/players_by_id").then((res) =>
-            res.json().then((data) => {
-                // Setting a data from api
-                setdata({
-                    position: data.Position,
-                    firstName: data.FirstName,
-                    lastName: data.LastName,
-                    description: data.Description,
-                });
-            })
-        );
+        fetchPlayer().then(async (data) => {
+             setPlayer(data);
+        })
     }, []);
     return (
         <Container fluid="md">
-            <Row className="justify-content-center">
+          <Row className="justify-content-center">
                 <Col xl={3}  className="mt-5">
                     <Card>
-                        {/*TODO: figure out proper image size*/}
-                        <Card.Img variant="top" src={archie_manning} fluid={true}/>
+                        {/*TODO: figure out proper image size}*/}
+                        <Card.Img variant="top" src={archie_manning} fluid={"true"}/>
                         <Card.Body>
                             <Card.Title>
-                                <span>{data.firstName} </span>
-                                <span>{data.lastName}</span>
+                                <span>{player?.get('firstName')} </span>
+                                <span>{player?.get('lastName')}</span>
                             </Card.Title>
                             <Card.Text>
                                 <Row>
@@ -73,7 +63,7 @@ function PlayerPage(props) {
                     <Card>
                         <Card.Body>
                             <Card.Title><span>About</span></Card.Title>
-                            <Card.Text>{data.description}</Card.Text>
+                            <Card.Text>{player?.get('description')}</Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
