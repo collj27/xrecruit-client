@@ -3,37 +3,42 @@ import Table from "react-bootstrap/Table";
 
 function PlayerStats(props) {
     let stats = props.stats
-    let tableName = props.tableName
+    // let tableName = props.tableName
     let header = null;
-    let body = null;
+    let body = [];
+
+    let hiddenCols = ["createdAt", "updatedAt", "objectId"]
+
     if (stats) {
-        // dyanamically create table
-        switch (tableName) {
-            //TODO: change to qbStats and add enum
-            case "Stats":
-                let keys = []
-                let values = []
-                for (let key in stats[0].toJSON()) {
-                    keys.push(key)
-                    console.log( typeof stats[0].toJSON()[key])
-                    if (typeof stats[0].toJSON()[key] != "object")
-                        values.push(stats[0].toJSON()[key])
-                }
-                header = <thead>
-                <tr>
-                    {keys.map(k => <th scope='col' id={k}>{k}</th>)}
-                </tr>
-                </thead>
+        let keys = []
+        let values = []
 
-                body =
-                    <tbody>
-                    <tr>
-                        {values.map(x => {<td id={x}>{x}</td>})}
-                    </tr>
-                    </tbody>
-
-
+        // get keys and create column headers
+        for (let key in stats[0].toJSON()){
+            if (typeof stats[0].toJSON()[key] != "object" &&  !hiddenCols.includes(key) )
+                keys.push(key)
         }
+
+        header = keys.map((k, index) => <th scope='col' key={index}>{k}</th>)
+
+        // g
+        for (let i in stats) {
+            let row = []
+            for (let key in stats[i].toJSON()) {
+                if (typeof stats[i].toJSON()[key] != "object"  && !hiddenCols.includes(key)) {
+                    row.push(stats[i].toJSON()[key])
+                }
+            }
+            console.log(row)
+            body.push(<tr>{row.map((x, index) =>  <td key={index}>{x}</td> )}</tr>)
+        }
+
+
+
+
+        // add data to table body
+
+
     }
 
     return (
@@ -76,8 +81,16 @@ function PlayerStats(props) {
                 <td>20</td>
             </tr>
             </tbody>*/}
-            {header}
-            {body}
+            <thead>
+            <tr>
+                {header}
+            </tr>
+            </thead>
+            <tbody>
+
+                {body}
+
+            </tbody>
         </Table>);
 }
 
