@@ -18,7 +18,7 @@ import {calculateAge} from "../../utils/utils";
 //TODO: create stats table
 function PlayerProfile() {
     const [player, setPlayer] = useState(null);
-    const [setStats, setPlayerStats] = useState(null);
+    const [playerStats, setPlayerStats] = useState(null);
 
     useEffect(() => {
 
@@ -37,14 +37,14 @@ function PlayerProfile() {
                     age: calculateAge(playerParseObj.get('dateOfBirth')),
                     highSchool: playerParseObj.get('highSchool'),
                     description: playerParseObj.get('description'),
-                    videoUrl: playerParseObj.get('videoUrl')
+                    videoUrl: playerParseObj.get('videoUrl'),
+                    statsTableName: playerParseObj.get('statsTableName')
                 });
 
 
                 //fetch player stats
                 fetchStatsByPlayerId(playerParseObj).then(statsParseObj => {
-                    console.log(statsParseObj)
-
+                    setPlayerStats(statsParseObj)
                 })
             })
 
@@ -94,7 +94,7 @@ function PlayerProfile() {
                     <Card>
                         <Card.Body>
                             <Card.Title><span>Stats</span></Card.Title>
-                            <PlayerStats></PlayerStats>
+                            <PlayerStats stats={playerStats} tableName={player?.statsTableName}></PlayerStats>
                         </Card.Body>
                     </Card>
                 </Col>
