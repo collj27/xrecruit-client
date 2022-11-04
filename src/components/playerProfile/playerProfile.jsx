@@ -9,31 +9,47 @@ import {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
 import '../app.css'
 import {ArrowRight} from "react-bootstrap-icons";
-import {fetchPlayerByObjectId} from "../../services/playerService";
+import {fetchPlayerByObjectId, fetchStatsByPlayerId} from "../../services/playerService";
 import {calculateAge} from "../../utils/utils";
 
 
 // auth
 
+//TODO: create stats table
 function PlayerProfile() {
     const [player, setPlayer] = useState(null);
+    const [setStats, setPlayerStats] = useState(null);
 
-    /*TODO: prevent from being called twice*/
     useEffect(() => {
+
+
         fetchPlayerByObjectId("t7sAyTpiPM")
-            .then((data) => {
+            .then((playerParseObj) => {
+
+                // set player
                 setPlayer({
-                    profilePicUrl: data.get("profilePic")._url,
-                    firstName: data.get('firstName'),
-                    lastName: data.get('lastName'),
-                    height: data.get('height'),
-                    weight: data.get('weight'),
-                    age: calculateAge(data.get('dateOfBirth')),
-                    highSchool: data.get('highSchool'),
-                    description: data.get('description'),
-                    videoUrl: data.get('videoUrl')
+                    profilePicUrl: playerParseObj.get("profilePic")._url,
+                    firstName: playerParseObj.get('firstName'),
+                    lastName: playerParseObj.get('lastName'),
+                    position: playerParseObj.get('position'),
+                    height: playerParseObj.get('height'),
+                    weight: playerParseObj.get('weight'),
+                    age: calculateAge(playerParseObj.get('dateOfBirth')),
+                    highSchool: playerParseObj.get('highSchool'),
+                    description: playerParseObj.get('description'),
+                    videoUrl: playerParseObj.get('videoUrl')
                 });
+
+
+                //fetch player stats
+                fetchStatsByPlayerId(playerParseObj).then(statsParseObj => {
+                    console.log(statsParseObj)
+
+                })
             })
+
+
+
     }, []);
     return (
         <Container fluid="md">
@@ -47,6 +63,10 @@ function PlayerProfile() {
                                 <span>{player?.firstName}</span>
                                 <span>{player?.lastName}</span>
                             </Card.Title>
+                            <Row>
+                                <Col><span className="playerPage-attribute-title">Position</span></Col>
+                                <Col><span>{player?.position}</span></Col>
+                            </Row>
                             <Row>
                                 <Col><span className="playerPage-attribute-title">HT/WT</span></Col>
                                 <Col><span>{player?.height} {player?.weight}</span></Col>

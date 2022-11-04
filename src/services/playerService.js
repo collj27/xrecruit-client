@@ -2,13 +2,32 @@ import Parse from 'parse/dist/parse.min.js';
 
 export async function fetchPlayerByObjectId(objectId) {
     try {
-        const query = new Parse.Query('Player');
-        query.equalTo('objectId', objectId);
-        const data = await query.first();
+        const playerQuery = new Parse.Query('Player')
+        playerQuery.equalTo('objectId', objectId);
+        const player = await playerQuery.first();
 
-        return data
+        return player
     } catch (e) {
+        console.log("error", e)
         alert("Error fetching player, check console")
-        console.log(e)
+    }
+}
+
+export async function fetchStatsByPlayerId(player) {
+    try {
+       /* const playerQuery = new Parse.Query('Player')
+        playerQuery.equalTo('objectId', playerId);
+        const player = await playerQuery.first();*/
+
+        const tableName = player.get('statsTableName')
+
+        const statsQuery = new Parse.Query(tableName)
+        statsQuery.equalTo('playerId', player)
+        const stats = await statsQuery.find()
+
+        return stats
+    } catch (e) {
+        console.log("error", e)
+        alert("Error fetching stats, check console")
     }
 }
