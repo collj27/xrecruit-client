@@ -1,0 +1,18 @@
+/* wrap video in fixed aspect ratio box*/
+.playerPage-video {
+    /*position: absolute;
+    top: 0;
+    left: 0;*/
+}
+
+.playerPage-video-wrapper {
+/*    position: relative;
+    padding-top: 56.25%*/ /* Player ratio: 100 / (1280 / 720) */
+}
+
+.playerPage-align-button-right {
+    text-align: right;
+}
+.playerPage-attribute-title {
+    color: #7A7A7A;
+}

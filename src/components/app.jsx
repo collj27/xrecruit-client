@@ -9,8 +9,7 @@ import {
     Route
 } from 'react-router-dom';
 import {Component} from "react";
-import Schools from "./schools/schools";
-import PlayerPage from "./playerPage/playerPage";
+import PlayerProfile from "./playerProfile/playerProfile";
 
 // Import Parse minified version
 import Parse from 'parse/dist/parse.min.js';
@@ -41,9 +40,7 @@ class App extends Component {
                     </Container>
                 </Navbar>
                 <Routes>
-                    {/*<Route exact path='/' element={<PlayerContainer/>}></Route>*/}
-                    <Route exact path='/' element={<PlayerPage/>}></Route>
-                    <Route exact path='/schools' element={<Schools/>}></Route>
+                    <Route exact path='/' element={<PlayerProfile/>}></Route>
                 </Routes>
 
             </Router>
@@ -51,35 +48,6 @@ class App extends Component {
     }
 }
 
-/*<Navbar bg="light" expand="lg">
-    <Container>
-        <Navbar.Brand href="#home">Brand Name/Logo</Navbar.Brand>
-        <Navbar.Collapse>
-            <Nav>
-                <Nav.Link href="#home">Players</Nav.Link>
-                <Nav.Link href="#link">Schools</Nav.Link>
-            </Nav>
-        </Navbar.Collapse>
-    </Container>
-</Navbar>*/
 
-
-/*<Container>
-    <Row>
-        <header class="title">
-            <h1>Top Players</h1>
-        </header>
-    </Row>
-    <Row>
-        {Array.from({length: 4}).map((_, idx) => (
-            <Col>
-                <PlayerCard></PlayerCard>
-            </Col>
-        ))}
-    </Row>
-</Container>
- */
-
-//}
 
 export default App;
