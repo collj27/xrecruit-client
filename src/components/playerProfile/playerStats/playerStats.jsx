@@ -1,4 +1,6 @@
 import Table from "react-bootstrap/Table";
+import {statsColsDict} from "../../../utils/utils";
+
 
 
 function PlayerStats(props) {
@@ -19,7 +21,7 @@ function PlayerStats(props) {
                 keys.push(key)
         }
 
-        header = keys.map((k, index) => <th scope='col' key={index}>{k}</th>)
+        header = keys.map((k, index) => <th scope='col' key={index}>{statsColsDict[k]}</th>)
 
         // g
         for (let i in stats) {
@@ -42,7 +44,7 @@ function PlayerStats(props) {
     }
 
     return (
-        <Table borderless={true} responsive="sm">
+        <Table borderless={true} responsive="lg">
             {/*<thead>
             <tr>
                 <th scope='col'></th>

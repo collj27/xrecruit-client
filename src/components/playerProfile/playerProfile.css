@@ -1,6 +1,6 @@
 /*override default video width*/
 .playerPage-video {
-    width:100% !important;
+    /*width:100% !important;*/
 }
 
 .playerPage-attribute-title {

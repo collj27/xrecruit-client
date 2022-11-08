@@ -82,7 +82,7 @@ function PlayerProfile() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col xl={4} className="mt-5">
+                <Col className="mt-5">
                     <Card>
                         <Card.Body>
                             <Card.Title><span>About</span></Card.Title>
@@ -90,20 +90,28 @@ function PlayerProfile() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col xl={5} className="mt-5">
+                {/*<Col xl={5} className="mt-5">
                     <Card>
                         <Card.Body>
                             <Card.Title><span>Stats</span></Card.Title>
                             <PlayerStats stats={playerStats} tableName={player?.statsTableName}></PlayerStats>
                         </Card.Body>
                     </Card>
-                </Col>
+                </Col>*/}
             </Row>
             <Row className="mb-5">
-                <Col xl={4} className="mt-5">
+                {/*<Col xl={4} className="mt-5">
                     <Card>
                         <Card.Body>
                             <Card.Title><span>Funding</span></Card.Title>
+                        </Card.Body>
+                    </Card>
+                </Col>*/}
+                <Col xl={5} className="mt-5">
+                    <Card>
+                        <Card.Body>
+                            <Card.Title><span>Stats</span></Card.Title>
+                            <PlayerStats stats={playerStats} tableName={player?.statsTableName}></PlayerStats>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -117,7 +125,7 @@ function PlayerProfile() {
                         <Col lg={2}>
                             <Button className="app-donate-button">
                                 <Row>
-                                    <Col xs={7}>Donate</Col>
+                                    <Col xs={7}>Recruit {player.firstName}</Col>
                                     <Col className="mx-2" xs={1}><ArrowRight/></Col>
                                 </Row>
                             </Button>
