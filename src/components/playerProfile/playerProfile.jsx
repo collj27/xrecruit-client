@@ -49,7 +49,6 @@ function PlayerProfile() {
             })
 
 
-
     }, []);
     return (
         <Container fluid="md">
@@ -57,27 +56,26 @@ function PlayerProfile() {
                 <Col xl={3} className="mt-5">
                     <Card>
                         {/*TODO: figure out proper image size}*/}
-                        <Card.Img variant="top" src={player?.profilePicUrl} fluid={"true"}/>
+                        <Card.Img variant="top" src={player?.profilePicUrl}/>
                         <Card.Body>
                             <Card.Title>
-                                <span>{player?.firstName}</span>
-                                <span>{player?.lastName}</span>
+                                <span>{player?.firstName} </span><span>{player?.lastName}</span>
                             </Card.Title>
                             <Row>
                                 <Col><span className="playerPage-attribute-title">Position</span></Col>
-                                <Col><span>{player?.position}</span></Col>
+                                <Col xs={7}><span>{player?.position}</span></Col>
                             </Row>
                             <Row>
                                 <Col><span className="playerPage-attribute-title">HT/WT</span></Col>
-                                <Col><span>{player?.height} {player?.weight}</span></Col>
+                                <Col xs={7}><span>{player?.height} {player?.weight}</span></Col>
                             </Row>
                             <Row>
                                 <Col><span className="playerPage-attribute-title">Age</span></Col>
-                                <Col><span>{player?.age}</span></Col>
+                                <Col xs={7}><span>{player?.age}</span></Col>
                             </Row>
                             <Row>
                                 <Col><span className="playerPage-attribute-title">High School</span></Col>
-                                <Col><span>{player?.highSchool}</span></Col>
+                                <Col xs={7}><span>{player?.highSchool}</span></Col>
                             </Row>
                         </Card.Body>
                     </Card>
@@ -90,23 +88,6 @@ function PlayerProfile() {
                         </Card.Body>
                     </Card>
                 </Col>
-                {/*<Col xl={5} className="mt-5">
-                    <Card>
-                        <Card.Body>
-                            <Card.Title><span>Stats</span></Card.Title>
-                            <PlayerStats stats={playerStats} tableName={player?.statsTableName}></PlayerStats>
-                        </Card.Body>
-                    </Card>
-                </Col>*/}
-            </Row>
-            <Row className="mb-5">
-                {/*<Col xl={4} className="mt-5">
-                    <Card>
-                        <Card.Body>
-                            <Card.Title><span>Funding</span></Card.Title>
-                        </Card.Body>
-                    </Card>
-                </Col>*/}
                 <Col xl={5} className="mt-5">
                     <Card>
                         <Card.Body>
@@ -115,19 +96,26 @@ function PlayerProfile() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col className="mt-5">
-                    <Row>
-                        <Col className="align-items-end">
-                            <ReactPlayer className="playerPage-video" url={player?.videoUrl}/>
+            </Row>
+            <Row className="mb-5">
+                <Col xl={4} className="mt-5">
+                    <Card>
+                        <Card.Body>
+                            <Card.Title><span>Funding</span></Card.Title>
+                            <Card.Body><span>Not Enough Data</span></Card.Body>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col xl={8} className="mt-5">
+                    <Row className="mt-2 ms-8">
+                        <Col className="playerPage-video-wrapper">
+                            <ReactPlayer className="playerPage-video" url={player?.videoUrl} width="100%" height="100%"/>
                         </Col>
-                    </Row>
+                    </Row >
                     <Row className="mt-2 justify-content-end">
-                        <Col lg={2}>
+                        <Col className="playerPage-align-button-right" lg={5} >
                             <Button className="app-donate-button">
-                                <Row>
-                                    <Col xs={7}>Recruit {player.firstName}</Col>
-                                    <Col className="mx-2" xs={1}><ArrowRight/></Col>
-                                </Row>
+                               <span> Recruit {player?.firstName} <ArrowRight/></span>
                             </Button>
                         </Col>
                     </Row>
