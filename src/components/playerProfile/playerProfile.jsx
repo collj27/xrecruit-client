@@ -97,19 +97,19 @@ function PlayerProfile() {
                     </Card>
                 </Col>
             </Row>
-            <Row className="mb-5">
-                <Col xl={4} className="mt-5">
+            <Row className="justify-content-end mt-2">
+                {/*<Col xl={4} className="mt-5">
                     <Card>
                         <Card.Body>
                             <Card.Title><span>Funding</span></Card.Title>
                             <Card.Body><span>Not Enough Data</span></Card.Body>
                         </Card.Body>
                     </Card>
-                </Col>
-                <Col xl={8} className="mt-5">
+                </Col>*/}
+                {/*<Col className="mt-5">
                     <Row className="mt-2 ms-8">
                         <Col className="playerPage-video-wrapper">
-                            <ReactPlayer className="playerPage-video" url={player?.videoUrl} width="100%" height="100%"/>
+                            <ReactPlayer className="playerPage-video" url={player?.videoUrl} width="100%"/>
                         </Col>
                     </Row >
                     <Row className="mt-2 justify-content-end">
@@ -119,6 +119,16 @@ function PlayerProfile() {
                             </Button>
                         </Col>
                     </Row>
+                </Col>*/}
+                <Col className="playerPage-video-wrapper">
+                    <ReactPlayer className="playerPage-video" url={player?.videoUrl} width="100%"/>
+                </Col>
+            </Row>
+            <Row className="justify-content-end mt-2 mb-5">
+                <Col className="playerPage-align-button-right" lg={5} >
+                    <Button className="app-donate-button">
+                        <span> Recruit {player?.firstName} <ArrowRight/></span>
+                    </Button>
                 </Col>
             </Row>
             {/*TODO: https://www.npmjs.com/package/react-player; look at imports depending on how videos are used (i.e. youtube onlu to reduce overhead*/}
