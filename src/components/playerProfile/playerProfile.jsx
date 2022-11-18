@@ -9,7 +9,7 @@ import {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
 import '../app.css'
 import {ArrowRight} from "react-bootstrap-icons";
-import {fetchPlayerByObjectId, fetchStatsByPlayerId} from "../../services/playerService";
+import {fetchPlayerById, fetchPlayerByObjectId, fetchStatsByPlayerId} from "../../services/playerService";
 import {calculateAge} from "../../utils/utils";
 
 
@@ -22,8 +22,22 @@ function PlayerProfile() {
 
     useEffect(() => {
 
+        fetchPlayerById(1).then((data) => {
+            setPlayer({
+                    firstName: data.first_name,
+                    lastName: data.last_name,
+                    position: data.position,
+                    height: data.height,
+                    weight: data.weight,
+                    age: calculateAge(data.birth_date),
+                    highSchool: data.high_school,
+                    description: data.description
+                }
+            )
+        })
 
-        fetchPlayerByObjectId("t7sAyTpiPM")
+
+        /*fetchPlayerByObjectId("t7sAyTpiPM")
             .then((playerParseObj) => {
 
                 // set player
@@ -46,7 +60,7 @@ function PlayerProfile() {
                 fetchStatsByPlayerId(playerParseObj).then(statsParseObj => {
                     setPlayerStats(statsParseObj)
                 })
-            })
+            })*/
 
 
     }, []);
@@ -125,7 +139,7 @@ function PlayerProfile() {
                 </Col>
             </Row>
             <Row className="justify-content-end mt-2 mb-5">
-                <Col className="playerPage-align-button-right" lg={5} >
+                <Col className="playerPage-align-button-right" lg={5}>
                     <Button className="app-donate-button">
                         <span> Recruit {player?.firstName} <ArrowRight/></span>
                     </Button>

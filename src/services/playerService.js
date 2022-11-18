@@ -1,5 +1,14 @@
 import Parse from 'parse/dist/parse.min.js';
 
+
+export async function fetchPlayerById(playerId) {
+    let route = "players/" + playerId.toString()
+    let playerPromise = fetch(route).then((res) => res.json())
+
+    return playerPromise;
+
+}
+
 export async function fetchPlayerByObjectId(objectId) {
     try {
         const playerQuery = new Parse.Query('Player')
