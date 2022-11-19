@@ -1,18 +1,20 @@
 
 export const statsColsDict = {
-    "year" : "SEASON",
-    "completionPct": "PCT",
-    "passingYds": "YDS",
-    "passingTd": "TD",
+    "season" : "SEASON",
+    "completion_pct": "PCT",
+    "passing_yds": "YDS",
+    "passing_tds": "TD",
     "fumbles" : "FUM",
     "interceptions": "INT",
-    "rushingTd":"TD",
-    "rushingYds":"YDS"
+    "rushing_tds":"TD",
+    "rushing_yds":"YDS"
 }
 
 
 
 export function calculateAge(dob){
+    if (typeof dob == 'string')
+        dob = new Date(dob)
     let today = new Date();
     let age = today.getFullYear() - dob.getFullYear();
     let m = today.getMonth() - dob.getMonth();
