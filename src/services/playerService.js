@@ -2,7 +2,8 @@ import Parse from 'parse/dist/parse.min.js';
 
 
 export async function fetchPlayerById(playerId) {
-    let route = "players/" + playerId.toString()
+    let route = process.env.REACT_APP_API_URL + "players/" + playerId.toString()
+    console.log(route)
     let playerPromise = fetch(route).then((res) => res.json())
 
     return playerPromise;
