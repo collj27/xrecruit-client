@@ -32,6 +32,7 @@ function PlayerProfile() {
                     highSchool: data.high_school,
                     description: data.description,
                     stats: data.player_stats,
+                    imgUrl: data.player_img_url,
                     videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
                 }
             )
@@ -44,7 +45,7 @@ function PlayerProfile() {
                 <Col xl={3} className="mt-5">
                     <Card>
                         {/*TODO: figure out proper image size}*/}
-                        <Card.Img variant="top" src="archie.jpeg"/>
+                        <Card.Img variant="top" src={player?.imgUrl}/>
                         <Card.Body>
                             <Card.Title>
                                 <span>{player?.firstName} </span><span>{player?.lastName}</span>
