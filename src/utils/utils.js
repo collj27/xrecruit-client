@@ -10,8 +10,11 @@ export const statsColsDict = {
     "rushing_yds":"YDS"
 }
 
-
-
+// make sure this matches positionEnum in api
+export const positionDict= {
+    1: "QB",
+    2: "WR"
+}
 export function calculateAge(dob){
     if (typeof dob == 'string')
         dob = new Date(dob)

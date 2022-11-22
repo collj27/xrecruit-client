@@ -1,7 +1,12 @@
 /* default font style*/
+body {
+    background-color:  #1E1E1E !important;
+}
+
 body > div {
     font-family: 'Inter', 'Jura', sans-serif;
     font-style: normal;
     font-weight: 400;
-    color: #1D1D1D;
+    color: #FBFBFB;
+
 }
