@@ -10,7 +10,7 @@ import {Button} from "react-bootstrap";
 import '../app.css'
 import {ArrowRight} from "react-bootstrap-icons";
 import {fetchPlayerById} from "../../services/playerService";
-import {calculateAge} from "../../utils/utils";
+import {calculateAge, positionDict} from "../../utils/utils";
 import '../archie.jpeg'
 
 // auth
@@ -25,7 +25,7 @@ function PlayerProfile() {
             setPlayer({
                     firstName: data.first_name,
                     lastName: data.last_name,
-                    position: data.position,
+                    position: positionDict[data.position],
                     height: data.height,
                     weight: data.weight,
                     age: calculateAge(data.birth_date),
