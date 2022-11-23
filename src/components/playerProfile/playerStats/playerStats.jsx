@@ -12,36 +12,37 @@ function PlayerStats(props) {
     if (stats) {
         let keys = []
 
-        // loop through each seasons stats
-       Object.values(stats).forEach(seasonStatsObj => {
-           // populate keys array if empty
-           if (keys.length === 0) {
-               keys = Object.keys(seasonStatsObj)
-           }
+        // loop through each season's stats
+        Object.values(stats).forEach(seasonStatsObj => {
+            // remove player_id and stats_id from object
+            // TODO: remove this in api
+            delete seasonStatsObj.player_id
+            delete seasonStatsObj.stats_id
 
-           // remove player_id and stats_id from object
-           // TODO: remove this in api
-           delete seasonStatsObj.player_id
-           delete seasonStatsObj.stats_id
+            // move seasons key,value to front of entries
+            let first = "season";
+            let seasonStatsArr = Object.entries(seasonStatsObj)
+            seasonStatsArr.sort(function (x, y) {
+                return x[0] === first ? -1 : y[0] === first ? 1 : 0;
+            });
 
-           // convert object to array and add row element to body array
-           let seasonStatsArr = Object.values(seasonStatsObj)
-           body.push(<tr>{seasonStatsArr.map((x, index) => <td key={index}>{x}</td>)}</tr>)
-       });
+            // set keys array
+            keys = seasonStatsArr.map(x => x[0])
 
+            // add row elements to body array
+            body.push(<tr key={keys[0]}>{seasonStatsArr.map((x, index) => <td key={index}>{x[1]}</td>)}</tr>)
+        });
+
+        // create header element from keys
         header = keys.map((k, index) => <th scope='col' key={index}>{statsColsDict[k]}</th>)
     }
 
     return (
         <Table borderless={true} responsive="lg">
             <thead>
-                <tr>
-                    {header}
-                </tr>
+            <tr>{header}</tr>
             </thead>
-            <tbody>
-                {body}
-            </tbody>
+            <tbody>{body}</tbody>
         </Table>);
 }
 
