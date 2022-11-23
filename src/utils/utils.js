@@ -2,12 +2,12 @@
 export const statsColsDict = {
     "season" : "SEASON",
     "completion_pct": "PCT",
-    "passing_yds": "YDS",
-    "passing_tds": "TD",
+    "passing_yds": "PASS YDS",
+    "passing_tds": "PASS TD",
     "fumbles" : "FUM",
     "interceptions": "INT",
-    "rushing_tds":"TD",
-    "rushing_yds":"YDS"
+    "rushing_tds":"RUSH TD",
+    "rushing_yds":"RUSH YDS"
 }
 
 // make sure this matches positionEnum in api

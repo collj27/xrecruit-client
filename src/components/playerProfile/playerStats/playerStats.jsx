@@ -11,30 +11,68 @@ function PlayerStats(props) {
     // only create table when stats is initialized
     if (stats) {
         let keys = []
+        let row = []
 
+        console.log("hii")
         // loop through each season's stats
         Object.values(stats).forEach(seasonStatsObj => {
-            // remove player_id and stats_id from object
-            // TODO: remove this in api
-            delete seasonStatsObj.player_id
-            delete seasonStatsObj.stats_id
+            let objKeys = Object.keys(seasonStatsObj)
+            let objArr = Object.entries(seasonStatsObj)
 
-            // move seasons key,value to front of entries
-            let first = "season";
-            let seasonStatsArr = Object.entries(seasonStatsObj)
-            seasonStatsArr.sort(function (x, y) {
-                return x[0] === first ? -1 : y[0] === first ? 1 : 0;
-            });
 
-            // set keys array
-            keys = seasonStatsArr.map(x => x[0])
+            if (objKeys.includes("season") && !keys.includes(statsColsDict.season)) {
+                keys.push(statsColsDict.season)
+                let keyValue = objArr.find(x => x[0] === "season")
+                let value = keyValue[1]
+                row.push(<td>{value}</td>)
+            }
 
-            // add row elements to body array
-            body.push(<tr key={keys[0]}>{seasonStatsArr.map((x, index) => <td key={index}>{x[1]}</td>)}</tr>)
+            if (objKeys.includes("passing_tds") && !keys.includes(statsColsDict.passing_tds)) {
+                keys.push(statsColsDict.passing_tds)
+                let keyValue = objArr.find(x => x[0] === "passing_tds")
+                let value = keyValue[1]
+                row.push(<td>{value}</td>)
+            }
+
+            if (objKeys.includes("passing_yds") && !keys.includes(statsColsDict.passing_yds)) {
+                keys.push(statsColsDict.passing_yds)
+                let value = objArr.find(x => x[0] === "passing_yds")
+               // body.push(<tr><td>{value}</td>)}</tr>)
+            }
+
+            if (objKeys.includes("rushing_tds") && !keys.includes(statsColsDict.rushing_tds)) {
+                keys.push(statsColsDict.rushing_tds)
+                let value = objArr.find(x => x[0] === "rushing_tds")
+                //body.push(<tr><td>{value}</td>)}</tr>)
+            }
+
+
+            if (objKeys.includes("rushing_yds") && !keys.includes(statsColsDict.rushing_yds)) {
+                keys.push(statsColsDict.rushing_yds)
+                let value = objArr.find(x => x[0] === "rushing_yds")
+                //body.push(<tr><td>{value}</td>)}</tr>)
+            }
+
+            if (objKeys.includes("interceptions") && !keys.includes(statsColsDict.interceptions)) {
+                keys.push(statsColsDict.interceptions)
+                let value = objArr.find(x => x[0] === "interceptions")
+               // body.push(<tr><td>{value}</td>)}</tr>)
+            }
+
+            if (objKeys.includes("fumbles")&& !keys.includes(statsColsDict.fumbles)) {
+                keys.push(statsColsDict.fumbles)
+                let value = objArr.find(x => x[0] === "fumbles")
+                //body.push(<tr><td>{value}</td>)}</tr>)
+            }
+
+            console.log(row)
+            body.push(<tr>{row}</tr>)
+
         });
 
-        // create header element from keys
-        header = keys.map((k, index) => <th scope='col' key={index}>{statsColsDict[k]}</th>)
+        // create header element from keys and stats cols dictionary
+
+        header = keys.map((k, index) => <th scope='col' key={index}>{k}</th>)
     }
 
     return (
