@@ -11,7 +11,6 @@ import '../app.css'
 import {ArrowRight} from "react-bootstrap-icons";
 import {fetchPlayerById} from "../../services/playerService";
 import {calculateAge, positionDict} from "../../utils/utils";
-import '../archie.jpeg'
 
 // auth
 
