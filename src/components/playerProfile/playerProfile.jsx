@@ -10,7 +10,7 @@ import {Button} from "react-bootstrap";
 import '../app.css'
 import {ArrowRight} from "react-bootstrap-icons";
 import {fetchPlayerById} from "../../services/playerService";
-import {calculateAge, positionDict} from "../../utils/utils";
+import {calculateAge} from "../../utils/utils";
 
 // auth
 
@@ -21,17 +21,18 @@ function PlayerProfile() {
     useEffect(() => {
 
         fetchPlayerById(1).then((data) => {
+            console.log(data)
             setPlayer({
-                    firstName: data.first_name,
-                    lastName: data.last_name,
-                    position: positionDict[data.position],
-                    height: data.height,
-                    weight: data.weight,
-                    age: calculateAge(data.birth_date),
-                    highSchool: data.high_school,
-                    description: data.description,
-                    stats: data.player_stats,
-                    imgUrl: data.player_img_url,
+                    firstName: data["first_name"],
+                    lastName: data["last_name"],
+                    position: data["position"],
+                    height: data["height"],
+                    weight: data["weight"],
+                    age: calculateAge(data["birth_date"]),
+                    highSchool: data["high_school"],
+                    description: data["description"],
+                    stats: data["player_stats"],
+                    imgUrl: data["image_url"],
                     videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
                 }
             )
