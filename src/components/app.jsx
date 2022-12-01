@@ -13,6 +13,7 @@ import PlayerProfile from "./playerProfile/playerProfile";
 
 // Import Parse minified version
 import Parse from 'parse/dist/parse.min.js';
+import SchoolProfile from "./schoolProfile/schoolProfile";
 
 // Your Parse initialization configuration goes here
 const PARSE_APPLICATION_ID = 'Hcu0HuBLfJoXCzdDz02Ajlq8j3jm25cKsIVcJIDf';
@@ -41,6 +42,7 @@ class App extends Component {
                 </Navbar>
                 <Routes>
                     <Route exact path='/' element={<PlayerProfile/>}></Route>
+                    <Route exact path='/schools' element={<SchoolProfile/>}></Route>
                 </Routes>
 
             </Router>
