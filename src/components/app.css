@@ -5,11 +5,11 @@
     font-size: 18px;
 }
 
-.nav-link > span{
+.nav-link > span {
     color: #FBFBFB;
 }
 
-.navbar-brand > span{
+.navbar-brand > span {
     color: white;
     border-bottom: 4px solid #7FE29B;
     padding-bottom: 0px;
@@ -22,21 +22,35 @@
     background-color: #414141 !important;
 }
 
-.card .card-body .card-title > span{
+.card .card-body .card-title > span, .card .card-header > span {
     border-bottom: 4px solid #7FE29B;
     font-weight: 700;
     font-size: 24px;
 }
 
+/* List Groups*/
+.card .list-group .list-group-item {
+    background-color: #414141;
+}
+
+.card .list-group .list-group-item .card-link{
+    color: #FBFBFB;
+    text-decoration-line: none;
+}
+
+.card .list-group .list-group-item .card-link:hover{
+    text-decoration-line: underline;
+}
+
 /*Donate Button*/
 .app-donate-button {
     /* dont allow donate button style to be overwritten*/
-    background-color: #7FE29B   !important;
-    border-color: #7FE29B       !important;
-    color: #1D1D1D              !important;
-    font-family: 'Jura'         !important;
-    font-size: 24px             !important;
-    font-weight: 700            !important;
+    background-color: #7FE29B !important;
+    border-color: #7FE29B !important;
+    color: #1D1D1D !important;
+    font-family: 'Jura' !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
 }
 
 

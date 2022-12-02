@@ -11,6 +11,7 @@ import '../app.css'
 import {ArrowRight} from "react-bootstrap-icons";
 import {fetchPlayerById} from "../../services/playerService";
 import {calculateAge} from "../../utils/utils";
+import VideoPlayer from "../videoPlayer/videoPlayer";
 
 // auth
 
@@ -21,7 +22,6 @@ function PlayerProfile() {
     useEffect(() => {
 
         fetchPlayerById(1).then((data) => {
-            console.log(data)
             setPlayer({
                     firstName: data["first_name"],
                     lastName: data["last_name"],
@@ -41,8 +41,8 @@ function PlayerProfile() {
     }, []);
     return (
         <Container fluid="md">
-            <Row className="justify-content-center">
-                <Col xl={3} className="mt-5">
+            <Row className="justify-content-center mt-5">
+                <Col xl={3}>
                     <Card>
                         {/*TODO: figure out proper image size}*/}
                         <Card.Img variant="top" src={player?.imgUrl}/>
@@ -69,7 +69,7 @@ function PlayerProfile() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col className="mt-5">
+                <Col>
                     <Card>
                         <Card.Body>
                             <Card.Title><span>About</span></Card.Title>
@@ -77,7 +77,7 @@ function PlayerProfile() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col xl={5} className="mt-5">
+                <Col xl={5}>
                     <Card>
                         <Card.Body>
                             <Card.Title><span>Stats</span></Card.Title>
@@ -87,8 +87,8 @@ function PlayerProfile() {
                 </Col>
             </Row>
             <Row className="justify-content-end mt-2">
-                <Col className="playerPage-video-wrapper">
-                    <ReactPlayer className="playerPage-video" url={player?.videoUrl} width="100%"/>
+                <Col>
+                    <VideoPlayer url={player?.videoUrl}></VideoPlayer>
                 </Col>
             </Row>
             <Row className="justify-content-end mt-2 mb-5">
