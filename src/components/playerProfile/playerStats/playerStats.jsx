@@ -1,6 +1,6 @@
 import Table from "react-bootstrap/Table";
 import {statsColsDict} from "../../../utils/utils";
-
+import './playerStats.css'
 
 //TODO: see if there's a library for this
 function PlayerStats(props) {
@@ -12,36 +12,87 @@ function PlayerStats(props) {
     if (stats) {
         let keys = []
 
-        // loop through each seasons stats
-       Object.values(stats).forEach(seasonStatsObj => {
-           // populate keys array if empty
-           if (keys.length === 0) {
-               keys = Object.keys(seasonStatsObj)
-           }
+    // TODO: figure out better key than math.random
+        // loop through each season's stats
+        Object.values(stats).forEach(seasonStatsObj => {
+            let objKeys = Object.keys(seasonStatsObj)
+            let objArr = Object.entries(seasonStatsObj)
+            let row = []
 
-           // remove player_id and stats_id from object
-           // TODO: remove this in api
-           delete seasonStatsObj.player_id
-           delete seasonStatsObj.stats_id
+            if (objKeys.includes("season")) {
+                // if key does not exist in array, add it
+                if (!keys.includes(statsColsDict.season))
+                    keys.push(statsColsDict.season)
 
-           // convert object to array and add row element to body array
-           let seasonStatsArr = Object.values(seasonStatsObj)
-           body.push(<tr>{seasonStatsArr.map((x, index) => <td key={index}>{x}</td>)}</tr>)
-       });
+                // get data cell value and add to row array
+                let keyValue = objArr.find(x => x[0] === "season")
+                let value = keyValue[1]
+                row.push(<td key={Math.random()}>{value}</td>)
+            }
 
-        header = keys.map((k, index) => <th scope='col' key={index}>{statsColsDict[k]}</th>)
+            if (objKeys.includes("passing_tds")) {
+                if (!keys.includes(statsColsDict.passing_tds))
+                    keys.push(statsColsDict.passing_tds)
+                let keyValue = objArr.find(x => x[0] === "passing_tds")
+                let value = keyValue[1]
+                row.push(<td key={Math.random()}>{value}</td>)
+            }
+
+            if (objKeys.includes("passing_yds")) {
+                if (!keys.includes(statsColsDict.passing_yds))
+                    keys.push(statsColsDict.passing_yds)
+                let keyValue = objArr.find(x => x[0] === "passing_yds")
+                let value = keyValue[1]
+                row.push(<td key={Math.random()}>{value}</td>)
+            }
+
+            if (objKeys.includes("rushing_tds")) {
+                if (!keys.includes(statsColsDict.rushing_tds))
+                    keys.push(statsColsDict.rushing_tds)
+                let keyValue = objArr.find(x => x[0] === "rushing_tds")
+                let value = keyValue[1]
+                row.push(<td key={Math.random()}>{value}</td>)
+            }
+
+
+            if (objKeys.includes("rushing_yds")) {
+                if (!keys.includes(statsColsDict.rushing_yds))
+                    keys.push(statsColsDict.rushing_yds)
+                let keyValue = objArr.find(x => x[0] === "rushing_yds")
+                let value = keyValue[1]
+                row.push(<td key={Math.random()}>{value}</td>)
+            }
+
+            if (objKeys.includes("interceptions")) {
+                if (!keys.includes(statsColsDict.interceptions))
+                    keys.push(statsColsDict.interceptions)
+                let keyValue = objArr.find(x => x[0] === "interceptions")
+                let value = keyValue[1]
+                row.push(<td key={Math.random()}>{value}</td>)
+            }
+
+            if (objKeys.includes("fumbles")) {
+                if (!keys.includes(statsColsDict.fumbles))
+                    keys.push(statsColsDict.fumbles)
+                let keyValue = objArr.find(x => x[0] === "fumbles")
+                let value = keyValue[1]
+                row.push(<td key={Math.random()}>{value}</td>)
+            }
+
+            body.push(<tr key={Math.random()}>{row}</tr>)
+
+        })
+
+        // create header element from keys and stats cols dictionary
+        header = keys.map((k, index) => <th scope='col' key={index}>{k}</th>)
     }
 
     return (
         <Table borderless={true} responsive="lg">
             <thead>
-                <tr>
-                    {header}
-                </tr>
+            <tr>{header}</tr>
             </thead>
-            <tbody>
-                {body}
-            </tbody>
+            <tbody>{body}</tbody>
         </Table>);
 }
 
