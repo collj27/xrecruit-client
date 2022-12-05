@@ -7,6 +7,8 @@ import {ListGroup} from "react-bootstrap";
 import '../app.css'
 import {fetchSchoolById} from "../../services/schoolService";
 import VideoPlayer from "../videoPlayer/videoPlayer";
+import {faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 function SchoolProfile() {
@@ -28,7 +30,7 @@ function SchoolProfile() {
     }, []);
     return (
         <Container fluid="md">
-            <Row className="justify-content-center mt-5">
+            <Row className="mt-5">
                 <Col xl={3}>
                     <Card>
                         <Card.Img variant="top" src={school?.imgUrl}/>
@@ -36,6 +38,10 @@ function SchoolProfile() {
                             <Card.Title className="profile-title">
                                 <span>{school?.name}</span>
                             </Card.Title>
+                            <Row>
+                                <Col><FontAwesomeIcon className="twitter" pull="right" size="lg" icon={faTwitter}/></Col>
+                                <Col><FontAwesomeIcon pull="left" size="lg" icon={faInstagram} /></Col>
+                            </Row>
                         </Card.Body>
                     </Card>
                 </Col>

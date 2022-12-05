@@ -11,6 +11,9 @@ import {ArrowRight} from "react-bootstrap-icons";
 import {fetchPlayerById} from "../../services/playerService";
 import {calculateAge} from "../../utils/utils";
 import VideoPlayer from "../videoPlayer/videoPlayer";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
+import ReactStars from "react-rating-stars-component/dist/react-stars";
 
 // auth
 
@@ -49,6 +52,9 @@ function PlayerProfile() {
                             <Card.Title>
                                 <span>{player?.firstName} </span><span>{player?.lastName}</span>
                             </Card.Title>
+
+                            <ReactStars count={5} size={24} value={5} edit={false} activeColor="#FBFBFB"/>
+
                             <Row>
                                 <Col><span className="playerProfile-attribute-title">Position</span></Col>
                                 <Col xs={7}><span>{player?.position}</span></Col>
@@ -71,7 +77,11 @@ function PlayerProfile() {
                 <Col>
                     <Card>
                         <Card.Body>
-                            <Card.Title><span className="underlined-title">About</span></Card.Title>
+                            <Card.Title>
+                                <span className="underlined-title">About</span>
+                                <FontAwesomeIcon  pull="right" icon={faInstagram}/>
+                                <FontAwesomeIcon className="twitter" pull="right" icon={faTwitter}/>
+                            </Card.Title>
                             <Card.Text>{player?.description}</Card.Text>
                         </Card.Body>
                     </Card>
