@@ -22,11 +22,20 @@
     background-color: #414141 !important;
 }
 
-.card .card-body .card-title > span, .card .card-header > span {
-    border-bottom: 4px solid #7FE29B;
+
+
+.card .card-body .card-title, .card .card-header  {
+    /* font size of titles*/
     font-weight: 700;
     font-size: 24px;
 }
+
+.card .card-body .card-title > .underlined-title, .card .card-header > .underlined-title{
+    /* option to underline titles */
+    border-bottom: 4px solid #7FE29B;
+}
+
+
 
 /* List Groups*/
 .card .list-group .list-group-item {

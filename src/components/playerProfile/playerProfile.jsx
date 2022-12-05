@@ -4,7 +4,6 @@ import './playerProfile.css'
 import PlayerStats from './playerStats/playerStats';
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import ReactPlayer from "react-player";
 import {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
 import '../app.css'
@@ -51,19 +50,19 @@ function PlayerProfile() {
                                 <span>{player?.firstName} </span><span>{player?.lastName}</span>
                             </Card.Title>
                             <Row>
-                                <Col><span className="playerPage-attribute-title">Position</span></Col>
+                                <Col><span className="playerProfile-attribute-title">Position</span></Col>
                                 <Col xs={7}><span>{player?.position}</span></Col>
                             </Row>
                             <Row>
-                                <Col><span className="playerPage-attribute-title">HT/WT</span></Col>
+                                <Col><span className="playerProfile-attribute-title">HT/WT</span></Col>
                                 <Col xs={7}><span>{player?.height} {player?.weight}</span></Col>
                             </Row>
                             <Row>
-                                <Col><span className="playerPage-attribute-title">Age</span></Col>
+                                <Col><span className="playerProfile-attribute-title">Age</span></Col>
                                 <Col xs={7}><span>{player?.age}</span></Col>
                             </Row>
                             <Row>
-                                <Col><span className="playerPage-attribute-title">High School</span></Col>
+                                <Col><span className="playerProfile-attribute-title">High School</span></Col>
                                 <Col xs={7}><span>{player?.highSchool}</span></Col>
                             </Row>
                         </Card.Body>
@@ -72,7 +71,7 @@ function PlayerProfile() {
                 <Col>
                     <Card>
                         <Card.Body>
-                            <Card.Title><span>About</span></Card.Title>
+                            <Card.Title><span className="underlined-title">About</span></Card.Title>
                             <Card.Text>{player?.description}</Card.Text>
                         </Card.Body>
                     </Card>
@@ -80,7 +79,7 @@ function PlayerProfile() {
                 <Col xl={5}>
                     <Card>
                         <Card.Body>
-                            <Card.Title><span>Stats</span></Card.Title>
+                            <Card.Title><span className="underlined-title">Stats</span></Card.Title>
                             <PlayerStats stats={player?.stats}></PlayerStats>
                         </Card.Body>
                     </Card>
@@ -92,7 +91,7 @@ function PlayerProfile() {
                 </Col>
             </Row>
             <Row className="justify-content-end mt-2 mb-5">
-                <Col className="playerPage-align-button-right" lg={5}>
+                <Col className="playerProfile-align-button-right" lg={5}>
                     <Button className="app-donate-button">
                         <span> Recruit {player?.firstName} <ArrowRight/></span>
                     </Button>

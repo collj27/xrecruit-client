@@ -33,7 +33,7 @@ function SchoolProfile() {
                     <Card>
                         <Card.Img variant="top" src={school?.imgUrl}/>
                         <Card.Body>
-                            <Card.Title>
+                            <Card.Title className="profile-title">
                                 <span>{school?.name}</span>
                             </Card.Title>
                         </Card.Body>
@@ -41,7 +41,7 @@ function SchoolProfile() {
                 </Col>
                 <Col>
                     <Card>
-                        <Card.Header><span>News</span></Card.Header>
+                        <Card.Header><span className="underlined-title">News</span></Card.Header>
                         <ListGroup variant="flush">
                             {school?.newsArticles?.map((x, index) =>
                                 <ListGroup.Item>
