@@ -6,7 +6,9 @@ import {useEffect, useState} from "react";
 import {ListGroup} from "react-bootstrap";
 import '../app.css'
 import {fetchSchoolById} from "../../services/schoolService";
-import ReactPlayer from "react-player";
+import VideoPlayer from "../videoPlayer/videoPlayer";
+import {faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 function SchoolProfile() {
@@ -28,41 +30,35 @@ function SchoolProfile() {
     }, []);
     return (
         <Container fluid="md">
-            <Row className="justify-content-center mt-5">
-                {/*left half of page*/}
-                <Col>
-                    <Row>
-                        <Col>
-                            <Card>
-                                {/*TODO: figure out proper image size}*/}
-                                <Card.Img variant="top" src={school?.imgUrl}/>
-                                <Card.Body>
-                                    <Card.Title>
-                                        <span>{school?.name}</span>
-                                    </Card.Title>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col className="mt-5">
-                            <Card>
-                                <Card.Header>Featured</Card.Header>
-                                <ListGroup variant="flush">
-                                    {school?.newsArticles.map((x, index) =>
-                                        <ListGroup.Item>
-                                            <Card.Link key={index} href={x.formattedUrl}>{x.title}</Card.Link>
-                                        </ListGroup.Item>
-                                    )}
-                                </ListGroup>
-                            </Card>
-                        </Col>
-                    </Row>
+            <Row className="mt-5">
+                <Col xl={3}>
+                    <Card>
+                        <Card.Img variant="top" src={school?.imgUrl}/>
+                        <Card.Body>
+                            <Card.Title className="profile-title">
+                                <span>{school?.name}</span>
+                            </Card.Title>
+                            <Row>
+                                <Col><FontAwesomeIcon className="twitter" pull="right" size="lg" icon={faTwitter}/></Col>
+                                <Col><FontAwesomeIcon pull="left" size="lg" icon={faInstagram} /></Col>
+                            </Row>
+                        </Card.Body>
+                    </Card>
                 </Col>
-
-                {/*right half of page*/}
                 <Col>
-                    <ReactPlayer url={school?.videoUrl}/>
+                    <Card>
+                        <Card.Header><span className="underlined-title">News</span></Card.Header>
+                        <ListGroup variant="flush">
+                            {school?.newsArticles?.map((x, index) =>
+                                <ListGroup.Item key={index} href={x["formattedUrl"]}>{x["title"]}</ListGroup.Item>
+                            )}
+                        </ListGroup>
+                    </Card>
+                </Col>
+            </Row>
+            <Row className="mt-2">
+                <Col>
+                   <VideoPlayer url={school?.videoUrl}></VideoPlayer>
                 </Col>
             </Row>
 

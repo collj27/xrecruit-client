@@ -2,25 +2,12 @@ import './app.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route
-} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {Component} from "react";
 import PlayerProfile from "./playerProfile/playerProfile";
-
-// Import Parse minified version
-import Parse from 'parse/dist/parse.min.js';
 import SchoolProfile from "./schoolProfile/schoolProfile";
 
-// Your Parse initialization configuration goes here
-const PARSE_APPLICATION_ID = 'Hcu0HuBLfJoXCzdDz02Ajlq8j3jm25cKsIVcJIDf';
-const PARSE_HOST_URL = 'https://parseapi.back4app.com/';
-const PARSE_JAVASCRIPT_KEY = 'CgSlBlsq2UH52BtPas7m7MC0wm9Fzw08cJCHlrnY';
-Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
-Parse.serverURL = PARSE_HOST_URL;
+
 
 class App extends Component {
     render() {
