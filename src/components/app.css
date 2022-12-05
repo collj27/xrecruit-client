@@ -40,14 +40,11 @@
 /* List Groups*/
 .card .list-group .list-group-item {
     background-color: #414141;
-}
-
-.card .list-group .list-group-item .card-link{
     color: #FBFBFB;
     text-decoration-line: none;
 }
 
-.card .list-group .list-group-item .card-link:hover{
+.card .list-group .list-group-item:hover{
     text-decoration-line: underline;
 }
 

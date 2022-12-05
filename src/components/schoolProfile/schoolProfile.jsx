@@ -44,9 +44,7 @@ function SchoolProfile() {
                         <Card.Header><span className="underlined-title">News</span></Card.Header>
                         <ListGroup variant="flush">
                             {school?.newsArticles?.map((x, index) =>
-                                <ListGroup.Item>
-                                    <Card.Link key={index} href={x["formattedUrl"]}>{x["title"]}</Card.Link>
-                                </ListGroup.Item>
+                                <ListGroup.Item key={index} href={x["formattedUrl"]}>{x["title"]}</ListGroup.Item>
                             )}
                         </ListGroup>
                     </Card>
