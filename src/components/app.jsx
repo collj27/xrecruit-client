@@ -2,7 +2,7 @@ import './app.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {Component} from "react";
 import PlayerProfile from "./playerProfile/playerProfile";
 import SchoolProfile from "./schoolProfile/schoolProfile";
