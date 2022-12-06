@@ -15,10 +15,8 @@ function SchoolProfile() {
     const [school, setSchool] = useState(null);
 
     useEffect(() => {
-        fetchSchoolById(1).then((data) => {
-            console.log(data)
-
-            setSchool({
+         fetchSchoolById(1).then((data) => {
+             setSchool({
                     name: data.name,
                     newsArticles: data["news_articles"],
                     imgUrl: data["image_url"],

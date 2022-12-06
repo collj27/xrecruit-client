@@ -2,15 +2,18 @@ import './app.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom';
 import {Component} from "react";
 import PlayerProfile from "./playerProfile/playerProfile";
 import SchoolProfile from "./schoolProfile/schoolProfile";
+import PaymentConfirmation from "./paymentConfirmation/paymentConfirmation";
 
 
 
 class App extends Component {
+
     render() {
+
         return (
             <Router>
                 <Navbar expand="md" variant="dark">
@@ -30,6 +33,7 @@ class App extends Component {
                 <Routes>
                     <Route exact path='/' element={<PlayerProfile/>}></Route>
                     <Route exact path='/schools' element={<SchoolProfile/>}></Route>
+                    <Route exact path='/paymentConfirmation' element={<PaymentConfirmation/>}></Route>
                 </Routes>
 
             </Router>
