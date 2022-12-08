@@ -12,7 +12,7 @@
 .navbar-brand > span {
     color: white;
     border-bottom: 4px solid #7FE29B;
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
 /* Cards */
@@ -35,8 +35,6 @@
     border-bottom: 4px solid #7FE29B;
 }
 
-
-
 /* List Groups*/
 .card .list-group .list-group-item {
     background-color: #414141;
@@ -46,17 +44,6 @@
 
 .card .list-group .list-group-item:hover{
     text-decoration-line: underline;
-}
-
-/*Donate Button*/
-.app-donate-button {
-    /* dont allow donate button style to be overwritten*/
-    background-color: #7FE29B !important;
-    border-color: #7FE29B !important;
-    color: #1D1D1D !important;
-    font-family: 'Jura' !important;
-    font-size: 24px !important;
-    font-weight: 700 !important;
 }
 
 /*Icons*/

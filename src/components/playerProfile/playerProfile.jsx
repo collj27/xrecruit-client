@@ -5,38 +5,20 @@ import PlayerStats from './playerStats/playerStats';
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import {useEffect, useState} from "react";
-import {Button} from "react-bootstrap";
 import '../app.css'
-import {ArrowRight} from "react-bootstrap-icons";
 import {fetchPlayerById} from "../../services/playerService";
 import {calculateAge} from "../../utils/utils";
 import VideoPlayer from "../videoPlayer/videoPlayer";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import ReactStars from "react-rating-stars-component/dist/react-stars";
-import { redirectToCheckout} from "../../services/paymentService";
+import PaymentButton from "../paymentButton/paymentButton";
 
-// auth
 
-//TODO: create stats table
 function PlayerProfile() {
-
-    //toggle recruit button
-    const [isDisabled, setIsDisabled] = useState(false);
 
     //player data
     const [player, setPlayer] = useState(null);
-
-    //TODO: use session object to verify destination before redirecting to stripeCheckout
-    const handleClick = async () => {
-
-        // disable submit for 5 secs to prevent dup clicks
-        setIsDisabled(true)
-        setTimeout(() => setIsDisabled(false), 5000);
-
-
-        await redirectToCheckout()
-    };
 
     useEffect(() => {
 
@@ -118,10 +100,8 @@ function PlayerProfile() {
                 </Col>
             </Row>
             <Row className="justify-content-end mt-2 mb-5">
-                <Col className="playerProfile-align-button-right" lg={5}>
-                    <Button className="app-donate-button" onClick={handleClick} disabled={isDisabled}>
-                        <span> Recruit {player?.firstName} <ArrowRight/></span>
-                    </Button>
+                <Col className="text-end" lg={5}>
+                    <PaymentButton btnPrefix="Recruit" btnName={player?.firstName}></PaymentButton>
                 </Col>
             </Row>
             {/*TODO: https://www.npmjs.com/package/react-player; look at imports depending on how videos are used (i.e. youtube onlu to reduce overhead*/}
