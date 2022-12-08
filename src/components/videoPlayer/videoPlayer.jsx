@@ -3,7 +3,6 @@ import "./videoPlayer.css"
 
 /*wrap the player in a fixed aspect ratio box to get a responsive player*/
 function VideoPlayer(props) {
-
     if (ReactPlayer.canPlay(props.url)) {
         return (
             <div className='video-player-wrapper'>
@@ -21,7 +20,6 @@ function VideoPlayer(props) {
             </div>
         );
     }
-
 }
 
 export default VideoPlayer;

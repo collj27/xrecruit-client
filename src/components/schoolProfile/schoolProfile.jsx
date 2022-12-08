@@ -9,6 +9,7 @@ import {fetchSchoolById} from "../../services/schoolService";
 import VideoPlayer from "../videoPlayer/videoPlayer";
 import {faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import PaymentButton from "../paymentButton/paymentButton";
 
 
 function SchoolProfile() {
@@ -17,7 +18,7 @@ function SchoolProfile() {
     useEffect(() => {
          fetchSchoolById(1).then((data) => {
              setSchool({
-                    name: data.name,
+                    name: data["name"],
                     newsArticles: data["news_articles"],
                     imgUrl: data["image_url"],
                     videoUrl: "https://www.youtube.com/watch?v=2P6kKQPbsRE"
@@ -57,6 +58,11 @@ function SchoolProfile() {
             <Row className="mt-2">
                 <Col>
                    <VideoPlayer url={school?.videoUrl}></VideoPlayer>
+                </Col>
+            </Row>
+            <Row className="justify-content-end mt-2 mb-5">
+                <Col className="text-end">
+                    <PaymentButton btnPrefix="Help Recruit for the" btnName={school?.name}></PaymentButton>
                 </Col>
             </Row>
 
