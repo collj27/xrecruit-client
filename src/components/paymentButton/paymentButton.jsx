@@ -1,5 +1,4 @@
-import {ArrowRight} from "react-bootstrap-icons";
-import {Button, Dropdown, DropdownButton} from "react-bootstrap";
+import {Dropdown, DropdownButton, Spinner} from "react-bootstrap";
 import {redirectToCheckout} from "../../services/paymentService";
 import {useState} from "react";
 import "./paymentButton.css"
@@ -10,6 +9,10 @@ function PaymentButton(props) {
     //toggle recruit button
     const [isDisabled, setIsDisabled] = useState(false);
 
+    // make button title a spinner if still loading
+    const spinner = <Spinner animation="border"/>
+    const btnTitle = props?.btnName === undefined ? spinner : props.btnPrefix + props.btnName
+
     const handleClick = async (name, dollarAmount) => {
         // disable submit for 5 secs to prevent dup clicks
         setIsDisabled(true)
@@ -19,15 +22,12 @@ function PaymentButton(props) {
         await redirectToCheckout(name, dollarAmount)
     };
 
-
     return (
-        /* <Button className="payment-button" onClick={handleClick} disabled={isDisabled}>
-                <span> {props?.btnPrefix} {props?.btnName} <ArrowRight/></span>
-          </Button>*/
-        <DropdownButton className="payment-button" disabled={isDisabled} title={props?.btnPrefix + " " + props?.btnName}>
+        <DropdownButton className="payment-button" disabled={isDisabled}
+                        title={btnTitle}>
             <Dropdown.ItemText>Select an amount</Dropdown.ItemText>
-            <Dropdown.Divider />
-            <Dropdown.Item as="button" onClick={() => handleClick(props?.btnName,10)}>$10</Dropdown.Item>
+            <Dropdown.Divider/>
+            <Dropdown.Item as="button" onClick={() => handleClick(props?.btnName, 10)}>$10</Dropdown.Item>
             <Dropdown.Item as="button" onClick={() => handleClick(props?.btnName, 20)}>$20</Dropdown.Item>
             <Dropdown.Item as="button" onClick={() => handleClick(props?.btnName, 50)}>$50</Dropdown.Item>
             <Dropdown.Item as="button" onClick={() => handleClick(props?.btnName, 100)}>$100</Dropdown.Item>
