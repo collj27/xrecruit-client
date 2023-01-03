@@ -7,13 +7,12 @@ import {Component} from "react";
 import PlayerProfile from "./playerProfile/playerProfile";
 import SchoolProfile from "./schoolProfile/schoolProfile";
 import PaymentConfirmation from "./paymentConfirmation/paymentConfirmation";
-
+import {LinkContainer} from 'react-router-bootstrap'
 
 
 class App extends Component {
 
     render() {
-
         return (
             <Router>
                 <Navbar expand="md" variant="dark">
@@ -22,10 +21,18 @@ class App extends Component {
                         <Navbar.Toggle variant="light"/>
                         <Navbar.Collapse>
                             <Nav>
-                                <Nav.Link href="/"><span>Home</span></Nav.Link>
-                                <Nav.Link href="/"><span>Players</span></Nav.Link>
-                                <Nav.Link href="/schools"><span>Schools</span></Nav.Link>
-                                <Nav.Link href="/"><span>Donate</span></Nav.Link>
+                                <LinkContainer to="/">
+                                    <Nav.Link>Home</Nav.Link>
+                                </LinkContainer>
+                                <LinkContainer to="/">
+                                    <Nav.Link>Players</Nav.Link>
+                                </LinkContainer>
+                                <LinkContainer to="/schools">
+                                    <Nav.Link>Schools</Nav.Link>
+                                </LinkContainer>
+                                <LinkContainer to="/">
+                                    <Nav.Link>Donate</Nav.Link>
+                                </LinkContainer>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
