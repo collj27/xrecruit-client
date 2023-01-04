@@ -1,4 +1,4 @@
-.payment-button > button{
+.payment-button /*> button*/{
     /* dont allow payment button style to be overwritten*/
     background-color: #7FE29B !important;
     border-color: #7FE29B !important;

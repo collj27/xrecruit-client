@@ -51,6 +51,7 @@
     color: #1DA1F2;
 }
 
-.modal-content {
+.modal-content, .offcanvas {
     background-color: #414141 !important;
+    height: 50%!important;
 }
