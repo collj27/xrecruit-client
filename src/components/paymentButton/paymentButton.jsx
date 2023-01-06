@@ -1,4 +1,14 @@
-import {Button, Dropdown, DropdownButton, InputGroup, Modal, Offcanvas, Spinner} from "react-bootstrap";
+import {
+    Button,
+    ButtonGroup,
+    Dropdown,
+    DropdownButton,
+    InputGroup,
+    Modal,
+    Offcanvas,
+    Spinner,
+    ToggleButton, ToggleButtonGroup
+} from "react-bootstrap";
 import {redirectToCheckout} from "../../services/paymentService";
 import {useState} from "react";
 import "./paymentButton.css"
@@ -13,6 +23,26 @@ function PaymentButton(props) {
     const [isDisabled, setIsDisabled] = useState(false);
 
     const [show, setShow] = useState(false);
+
+    const [radioValue, setRadioValue] = useState('1');
+
+    const [value, setValue] = useState(50);
+    const handleChange = (val) => {
+        console.log(val)
+        if (val === value)
+            setValue(null)
+        else
+            setValue(val)
+    };
+
+
+    const radios = [
+        {name: '$10', value: 10},
+        {name: '$50', value: 50},
+        {name: '$100', value: 100},
+        {name: '$250', value: 250},
+    ];
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -42,93 +72,50 @@ function PaymentButton(props) {
                 <Dropdown.Item as="button" onClick={() => handleClick(props?.btnName, 100)}>$100</Dropdown.Item>
                 <Dropdown.Item as="button" onClick={() => handleShow()}>Custom Amount</Dropdown.Item>
             </DropdownButton>*/}
-            <Button className="payment-button" onClick={() => handleShow()}>
+            <Button variant="secondary" size="lg" onClick={() => handleShow()}>
                 {btnTitle}
             </Button>
 
-            {/*<Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <InputGroup>
-                        <InputGroup.Text>$</InputGroup.Text>
-                        <Form.Control type="number" placeholder="Enter an amount"/>
-                    </InputGroup>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-*/}
             <Offcanvas show={show} onHide={handleClose} placement="bottom" scroll={true}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Select an Amount</Offcanvas.Title>
+                <Offcanvas.Header closeVariant="white" closeButton>
+                           <Offcanvas.Title></Offcanvas.Title>
                 </Offcanvas.Header>
+
                 <Offcanvas.Body>
                     <Row className="justify-content-center">
-                        <Col className="text-center" lg={3}>
-                            {['radio'].map((type) => (
-                                <div key={`inline-${type}`} className="mb-3">
-                                    <Form.Check
-                                        inline
-                                        label="$10"
-                                        name="group1"
-                                        type={type}
-                                        id={`inline-${type}-1`}
-                                    />
-                                    <Form.Check
-                                        inline
-                                        label="$50"
-                                        name="group1"
-                                        type={type}
-                                        id={`inline-${type}-2`}
-                                    />
-                                    <Form.Check
-                                        inline
-                                        label="$100"
-                                        name="group1"
-                                        type={type}
-                                        id={`inline-${type}-3`}
-                                    />
-                                    <Form.Check
-                                        inline
-                                        label="$250"
-                                        type={type}
-                                        name="group1"
-                                        id={`inline-${type}-4`}
-                                    />
-                                </div>
-                            ))}
-                            {/* <InputGroup>
-                                <InputGroup.Text>$</InputGroup.Text>
-                                <Form.Control type="text" placeholder="Other Amount"/>
-                                <InputGroup.Text>.00</InputGroup.Text>
-                            </InputGroup>*/}
+                        <Col xs={8} sm={7} md={6} lg={5} xl={4}>
+                            <Form>
+                                <Form.Group as={Row} className="mb-3">
+                                    <ToggleButtonGroup type="radio" name="radio" size="lg" value={value} onChange={handleChange}>
+                                        {radios.map((radio, idx) => (
+                                            <ToggleButton className="toggle-button"
+                                                          key={idx}
+                                                          id={`radio-${idx}`}
+                                                          value={radio.value}
+                                                          name="group1"
+                                            >
+                                                {radio.name}
+                                            </ToggleButton>
+                                        ))}
+                                    </ToggleButtonGroup>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3">
+                                    <InputGroup>
+                                        <InputGroup.Text>$</InputGroup.Text>
+                                        <Form.Control type="text" size="lg" placeholder="Other Amount"/>
+                                        <InputGroup.Text>.00</InputGroup.Text>
+                                    </InputGroup>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3">
+                                    <ButtonGroup>
+                                        <Button variant="secondary" size="lg" type="submit">
+                                            Submit Payment
+                                        </Button>
+                                    </ButtonGroup>
+                                </Form.Group>
+                            </Form>
                         </Col>
                     </Row>
-
-                    <Row className="mb-3 justify-content-center">
-                        <Col className="text-center"  lg={3}>
-                            <InputGroup>
-                                <InputGroup.Text>$</InputGroup.Text>
-                                <Form.Control type="text" placeholder="Other Amount"/>
-                                <InputGroup.Text>.00</InputGroup.Text>
-                            </InputGroup>
-                        </Col>
-                    </Row>
-
-                    <Row className="justify-content-center">
-                        <Col className="text-center" sm={3}>
-                            <Button>Submit Payment</Button>
-                        </Col>
-                    </Row>
-
                 </Offcanvas.Body>
             </Offcanvas>
         </>

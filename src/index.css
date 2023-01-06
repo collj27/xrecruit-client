@@ -3,7 +3,7 @@ body {
     background-color:  #1E1E1E !important;
 }
 
-body > div {
+body > * {
     font-family: 'Inter', 'Jura', sans-serif;
     font-style: normal;
     font-weight: 400;

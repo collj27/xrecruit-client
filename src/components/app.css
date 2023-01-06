@@ -23,14 +23,13 @@
 }
 
 
-
-.card .card-body .card-title, .card .card-header  {
+.card .card-body .card-title, .card .card-header {
     /* font size of titles*/
     font-weight: 700;
     font-size: 24px;
 }
 
-.card .card-body .card-title > .underlined-title, .card .card-header > .underlined-title{
+.card .card-body .card-title > .underlined-title, .card .card-header > .underlined-title {
     /* option to underline titles */
     border-bottom: 4px solid #7FE29B;
 }
@@ -42,7 +41,7 @@
     text-decoration-line: none;
 }
 
-.card .list-group .list-group-item:hover{
+.card .list-group .list-group-item:hover {
     text-decoration-line: underline;
 }
 
@@ -51,7 +50,51 @@
     color: #1DA1F2;
 }
 
-.modal-content, .offcanvas {
+
+/* Offcanvas */
+.offcanvas {
     background-color: #414141 !important;
-    height: 50%!important;
+    /*height: 50% !important;*/
+}
+
+
+/*Forms*/
+.input-group-text {
+    background-color: #E3E3E3;
+    border-color: #E3E3E3;
+}
+
+/* Buttons - use important to prevent overwriting */
+.btn.btn-primary {
+    /* grey button, black text */
+    background-color: #E3E3E3!important;
+    border-color: #E3E3E3!important;
+    color: #1D1D1D!important;
+}
+
+.btn.btn-primary:hover {
+    background-color: #7FE29B !important;
+    border-color: #7FE29B !important;
+}
+
+.btn-check:checked + .btn {
+    /* checked button on form */
+    background-color: #7FE29B !important;
+    border-color: #7FE29B !important;
+    color: #1D1D1D !important;
+}
+
+.btn.btn-secondary{
+    /* green button, black text */
+    background-color: #7FE29B!important;
+    border-color: #7FE29B!important;
+    color: #1D1D1D!important;
+    font-weight: 700!important;
+    font-family: 'Jura', 'sans-serif'!important;
+}
+
+.btn.btn-secondary:hover {
+    background-color: #E3E3E3 !important;
+    border-color: #E3E3E3 !important;
+    color: #1D1D1D!important;
 }
