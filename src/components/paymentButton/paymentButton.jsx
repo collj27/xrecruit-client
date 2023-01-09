@@ -24,15 +24,30 @@ function PaymentButton(props) {
 
     const [show, setShow] = useState(false);
 
-    const [radioValue, setRadioValue] = useState('1');
+    const [paymentValue, setPaymentValue] = useState(50);
 
-    const [value, setValue] = useState(50);
-    const handleChange = (val) => {
-        console.log(val)
-        if (val === value)
-            setValue(null)
-        else
-            setValue(val)
+
+    const [isToggleDisabled, setIsToggleDisabled] = useState(false);
+    const [toggleValue, setToggleValue] = useState(50);
+
+    const handleToggleChange = (val) => {
+        setToggleValue(val)
+        setPaymentValue(val)
+    };
+
+
+    const handleCustomValueChange = (e) => {
+        let input = e.target.value
+        if (input === "") {
+            // if custom amount field is empty, enable toggle buttons
+            setIsToggleDisabled(false)
+            setPaymentValue(null)
+        } else {
+            // if custom amount field is populated, disable toggle buttons
+            setToggleValue(null)
+            setIsToggleDisabled(true)
+            setPaymentValue(parseInt(input))
+        }
     };
 
 
@@ -51,64 +66,54 @@ function PaymentButton(props) {
     const spinner = <Spinner animation="border"/>
     const btnTitle = props?.btnName === undefined ? spinner : props.btnPrefix + " " + props.btnName
 
-    const handleClick = async (name, dollarAmount) => {
-        // disable submit for 5 secs to prevent dup clicks
-        setIsDisabled(true)
-        setTimeout(() => setIsDisabled(false), 5000);
 
-        // redirect to stripe
-        await redirectToCheckout(name, dollarAmount)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await redirectToCheckout(props?.btnName, paymentValue)
     };
 
     return (
         <>
-            {/*            <DropdownButton className="payment-button" disabled={isDisabled} title={btnTitle}>
-                <Dropdown.ItemText>Select an amount</Dropdown.ItemText>
-                <Dropdown.Divider/>
-                <Dropdown.Item as="button" onClick={() => handleClick(props?.btnName, 10)}>$10</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => handleClick(props?.btnName, 20)}>$20</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => handleClick(props?.btnName, 50)}>$50</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => handleClick(props?.btnName, 100)}>$100</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => handleClick(props?.btnName, 100)}>$100</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => handleShow()}>Custom Amount</Dropdown.Item>
-            </DropdownButton>*/}
             <Button variant="secondary" size="lg" onClick={() => handleShow()}>
                 {btnTitle}
             </Button>
 
             <Offcanvas show={show} onHide={handleClose} placement="bottom" scroll={true}>
                 <Offcanvas.Header closeVariant="white" closeButton>
-                           <Offcanvas.Title></Offcanvas.Title>
+                    <Offcanvas.Title></Offcanvas.Title>
                 </Offcanvas.Header>
 
                 <Offcanvas.Body>
                     <Row className="justify-content-center">
                         <Col xs={8} sm={7} md={6} lg={5} xl={4}>
-                            <Form>
+                            <Form onSubmit={handleSubmit}>
                                 <Form.Group as={Row} className="mb-3">
-                                    <ToggleButtonGroup type="radio" name="radio" size="lg" value={value} onChange={handleChange}>
+                                    <ToggleButtonGroup type="radio" name="radio" size="lg" value={toggleValue}
+                                                       onChange={handleToggleChange}>
                                         {radios.map((radio, idx) => (
                                             <ToggleButton className="toggle-button"
                                                           key={idx}
                                                           id={`radio-${idx}`}
                                                           value={radio.value}
                                                           name="group1"
+                                                          disabled={isToggleDisabled}
                                             >
                                                 {radio.name}
                                             </ToggleButton>
                                         ))}
                                     </ToggleButtonGroup>
                                 </Form.Group>
-                                <Form.Group as={Row} className="mb-3">
+                                <Form.Group as={Row} className="mb-3" controlId="otherAmount">
                                     <InputGroup>
-                                        <InputGroup.Text>$</InputGroup.Text>
-                                        <Form.Control type="text" size="lg" placeholder="Other Amount"/>
-                                        <InputGroup.Text>.00</InputGroup.Text>
+                                        <InputGroup.Text size="lg">$</InputGroup.Text>
+                                        <Form.Control type="text" size="lg" placeholder="Other Amount"
+                                                      onChange={handleCustomValueChange}/>
+                                        <InputGroup.Text size="lg">.00</InputGroup.Text>
                                     </InputGroup>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3">
                                     <ButtonGroup>
-                                        <Button variant="secondary" size="lg" type="submit">
+                                        <Button variant="secondary" size="lg" type="submit" disabled={paymentValue === null}>
                                             Submit Payment
                                         </Button>
                                     </ButtonGroup>
