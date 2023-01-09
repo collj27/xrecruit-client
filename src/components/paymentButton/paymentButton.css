@@ -1,13 +1,8 @@
-.payment-button > button {
-    /* dont allow payment button style to be overwritten*/
-    background-color: #7FE29B !important;
-    border-color: #7FE29B !important;
-    color: #1D1D1D !important;
-    font-family: 'Jura', 'sans-serif' !important;
-    font-size: 24px !important;
-    font-weight: 700 !important;
+.form-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1D1D1D;
 }
 
-.dropdown-item-text {
-    font-weight: bold;
-}
+
+
