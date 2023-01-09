@@ -1,10 +1,7 @@
 import {
     Button,
     ButtonGroup,
-    Dropdown,
-    DropdownButton,
     InputGroup,
-    Modal,
     Offcanvas,
     Spinner,
     ToggleButton, ToggleButtonGroup
@@ -18,39 +15,10 @@ import Col from "react-bootstrap/Col";
 
 //TODO: use session object to verify destination before redirecting to stripeCheckout
 function PaymentButton(props) {
+    const spinner = <Spinner animation="border"/>    // make button title a spinner if still loading
+    const btnTitle = props?.btnName === undefined ? spinner : props.btnPrefix + " " + props.btnName // button title
 
-    //toggle recruit button
-    const [isDisabled, setIsDisabled] = useState(false);
-
-    const [show, setShow] = useState(false);
-
-    const [paymentValue, setPaymentValue] = useState(50);
-
-
-    const [isToggleDisabled, setIsToggleDisabled] = useState(false);
-    const [toggleValue, setToggleValue] = useState(50);
-
-    const handleToggleChange = (val) => {
-        setToggleValue(val)
-        setPaymentValue(val)
-    };
-
-
-    const handleCustomValueChange = (e) => {
-        let input = e.target.value
-        if (input === "") {
-            // if custom amount field is empty, enable toggle buttons
-            setIsToggleDisabled(false)
-            setPaymentValue(null)
-        } else {
-            // if custom amount field is populated, disable toggle buttons
-            setToggleValue(null)
-            setIsToggleDisabled(true)
-            setPaymentValue(parseInt(input))
-        }
-    };
-
-
+    // toggle button options
     const radios = [
         {name: '$10', value: 10},
         {name: '$50', value: 50},
@@ -58,18 +26,49 @@ function PaymentButton(props) {
         {name: '$250', value: 250},
     ];
 
+    // STATES
+    const [show, setShow] = useState(false); // show offcanvas
+    const [isToggleDisabled, setIsToggleDisabled] = useState(false); // disable toggle buttons
+    const [paymentValue, setPaymentValue] = useState(50); // value to submit to stripe
+    const [toggleValue, setToggleValue] = useState(50); // set selected toggled button
+    const [customValue, setCustomValue] = useState(""); // other amount
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    //HANDLERS
+    const handleClose = () => setShow(false); // close offcanvas
+    const handleShow = () => setShow(true); // open offcanvas
 
-    // make button title a spinner if still loading
-    const spinner = <Spinner animation="border"/>
-    const btnTitle = props?.btnName === undefined ? spinner : props.btnPrefix + " " + props.btnName
+    // handle toggle button selections
+    const handleToggleChange = (val) => {
+        setToggleValue(val)
+        setPaymentValue(val)
+    };
 
+    // handle other amount input
+    const handleCustomValueChange = (e) => {
+        let value = e.target.value
+        const result = value.replace(/\D/g, '');
 
+        setCustomValue(result)
+
+        // disable toggle
+        // can't put it in else statement due to edge case from inputting a character first
+        setToggleValue(null)
+        setIsToggleDisabled(true)
+
+        if (result === "") {
+            // if custom amount field is empty, enable toggle buttons
+            setIsToggleDisabled(false)
+            setPaymentValue(null)
+        } else {
+            // if custom amount field is populated, set payment value
+            setPaymentValue(parseInt(result))
+        }
+    };
+
+    // handle form submission
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        await redirectToCheckout(props?.btnName, paymentValue)
+        e.preventDefault(); // prevent reload on submission
+        await redirectToCheckout(props?.btnName, paymentValue) // redirect to stripe
     };
 
     return (
@@ -107,13 +106,15 @@ function PaymentButton(props) {
                                     <InputGroup>
                                         <InputGroup.Text size="lg">$</InputGroup.Text>
                                         <Form.Control type="text" size="lg" placeholder="Other Amount"
-                                                      onChange={handleCustomValueChange}/>
+                                                      value={customValue} onChange={handleCustomValueChange}
+                                        />
                                         <InputGroup.Text size="lg">.00</InputGroup.Text>
                                     </InputGroup>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3">
                                     <ButtonGroup>
-                                        <Button variant="secondary" size="lg" type="submit" disabled={paymentValue === null}>
+                                        <Button variant="secondary" size="lg" type="submit"
+                                                disabled={paymentValue == null}>
                                             Submit Payment
                                         </Button>
                                     </ButtonGroup>
