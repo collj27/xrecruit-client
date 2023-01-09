@@ -87,7 +87,8 @@ function PaymentButton(props) {
                         <Col xs={8} sm={7} md={6} lg={5} xl={4}>
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group as={Row} className="mb-3">
-                                    <ToggleButtonGroup type="radio" name="radio" size="lg" value={toggleValue}
+                                    <ToggleButtonGroup className="d-none d-sm-flex" type="radio" name="radio"
+                                                       size="lg" value={toggleValue}
                                                        onChange={handleToggleChange}>
                                         {radios.map((radio, idx) => (
                                             <ToggleButton className="toggle-button"
@@ -101,19 +102,45 @@ function PaymentButton(props) {
                                             </ToggleButton>
                                         ))}
                                     </ToggleButtonGroup>
+                                     <ToggleButtonGroup className="d-flex d-sm-none" type="radio" name="radio"
+                                                       size="sm" value={toggleValue}
+                                                       onChange={handleToggleChange}>
+                                        {radios.map((radio, idx) => (
+                                            <ToggleButton className="toggle-button"
+                                                          key={idx}
+                                                          id={`radio-${idx}`}
+                                                          value={radio.value}
+                                                          name="group2"
+                                                          disabled={isToggleDisabled}
+                                            >
+                                                {radio.name}
+                                            </ToggleButton>
+                                        ))}
+                                    </ToggleButtonGroup>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="otherAmount">
                                     <InputGroup>
-                                        <InputGroup.Text size="lg">$</InputGroup.Text>
-                                        <Form.Control type="text" size="lg" placeholder="Other Amount"
+                                        <InputGroup.Text>$</InputGroup.Text>
+                                        <Form.Control className="d-none d-sm-inline" type="text" size="lg"
+                                                      placeholder="Other Amount"
                                                       value={customValue} onChange={handleCustomValueChange}
                                         />
-                                        <InputGroup.Text size="lg">.00</InputGroup.Text>
+                                        <Form.Control className="d-inline d-sm-none" type="text" size="sm"
+                                                      placeholder="Other Amount"
+                                                      value={customValue} onChange={handleCustomValueChange}
+                                        />
+                                        <InputGroup.Text>.00</InputGroup.Text>
                                     </InputGroup>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3">
                                     <ButtonGroup>
-                                        <Button variant="secondary" size="lg" type="submit"
+                                        <Button className="d-none d-sm-inline" variant="secondary" size="lg"
+                                                type="submit"
+                                                disabled={paymentValue == null}>
+                                            Submit Payment
+                                        </Button>
+                                        <Button className="d-inline d-sm-none" variant="secondary" size="sm"
+                                                type="submit"
                                                 disabled={paymentValue == null}>
                                             Submit Payment
                                         </Button>
