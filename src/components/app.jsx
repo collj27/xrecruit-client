@@ -8,6 +8,7 @@ import PlayerProfile from "./playerProfile/playerProfile";
 import SchoolProfile from "./schoolProfile/schoolProfile";
 import PaymentConfirmation from "./paymentConfirmation/paymentConfirmation";
 import {LinkContainer} from 'react-router-bootstrap'
+import HomePage from "./homePage/homePage";
 
 
 class App extends Component {
@@ -38,7 +39,8 @@ class App extends Component {
                     </Container>
                 </Navbar>
                 <Routes>
-                    <Route exact path='/' element={<PlayerProfile/>}></Route>
+                    <Route exact path='/' element={<HomePage/>}></Route>
+                    <Route exact path='/playerProfile' element={<PlayerProfile/>}></Route>
                     <Route exact path='/schools' element={<SchoolProfile/>}></Route>
                     <Route exact path='/paymentConfirmation' element={<PaymentConfirmation/>}></Route>
                 </Routes>
