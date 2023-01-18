@@ -4,8 +4,21 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import './homePage.css'
 import PlayerCard from "../playerCard/playerCard";
+import {useEffect, useState} from "react";
+import {fetchPlayers} from "../../services/playerService";
 
 function HomePage() {
+
+    //TODO: make this a list
+    //player data
+    const [playerList, setPlayerList] = useState(null);
+    useEffect(() => {
+
+        fetchPlayers().then((data) => {
+            setPlayerList(data)
+        })
+
+    }, []);
 
     return (
         <Container>
@@ -26,14 +39,24 @@ function HomePage() {
                 </Col>
             </Row>
 
-            <Row className="mt-3">
-                <Col>
-                    <PlayerCard>
 
-                    </PlayerCard>
-                </Col>
+            <Row xs={2} sm={2} md={3} lg={4} className="my-3">
+                {playerList?.map((player, idx) => (
+                    <Col key={idx}>
+                        <PlayerCard firstName={player["first_name"]} lastName={player["last_name"]}
+                                    imgUrl={player["image_url"]} position={player["position"]}></PlayerCard>
+                    </Col>
+                ))}
             </Row>
 
+            <Row md={4} className="my-3">
+                {playerList?.map((player, idx) => (
+                    <Col key={idx}>
+                        <PlayerCard firstName={player["first_name"]} lastName={player["last_name"]}
+                                    imgUrl={player["image_url"]} position={player["position"]}></PlayerCard>
+                    </Col>
+                ))}
+            </Row>
 
         </Container>
 
