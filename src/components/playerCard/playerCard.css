@@ -22,3 +22,10 @@
     font-weight: 700;
     font-size: 24px;
 }
+.playerCard-image {
+    height:150px;
+}
+
+.playerCard-image {
+    object-fit: cover;
+}
