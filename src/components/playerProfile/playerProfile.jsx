@@ -13,6 +13,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import ReactStars from "react-rating-stars-component/dist/react-stars";
 import PaymentButton from "../paymentButton/paymentButton";
+import {useSearchParams} from "react-router-dom";
 
 
 function PlayerProfile() {
@@ -20,9 +21,25 @@ function PlayerProfile() {
     //player data
     const [player, setPlayer] = useState(null);
 
+    const [searchParams] = useSearchParams();
+
     useEffect(() => {
 
-        fetchPlayerById(1).then((data) => {
+        setPlayer({
+                    firstName:searchParams.get("firstName"),
+                    lastName: searchParams.get("lastName"),
+                    position: searchParams.get("postion"),
+                    height: searchParams.get("height"),
+                    weight: searchParams.get("weight"),
+                    age: calculateAge(searchParams.get("birthDate")),
+                    highSchool: searchParams.get("highSchool"),
+                    description: searchParams.get("description"),
+                    stats: searchParams.get("stats"),
+                    imgUrl: searchParams.get("imgUrl"), //TODO: figure out how to mask img url and youtube url - base64 encode? cache? store in browser?
+                    videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
+                })
+
+/*        fetchPlayerById(searchParams.get("playerId")).then((data) => {
             setPlayer({
                     firstName: data["first_name"],
                     lastName: data["last_name"],
@@ -37,7 +54,7 @@ function PlayerProfile() {
                     videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
                 }
             )
-        })
+        })*/
 
     }, []);
     return (
