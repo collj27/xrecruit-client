@@ -13,7 +13,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import ReactStars from "react-rating-stars-component/dist/react-stars";
 import PaymentButton from "../paymentButton/paymentButton";
-import {useSearchParams} from "react-router-dom";
+import {useLocation, useSearchParams} from "react-router-dom";
 
 
 function PlayerProfile() {
@@ -22,41 +22,67 @@ function PlayerProfile() {
     const [player, setPlayer] = useState(null);
 
     const [searchParams] = useSearchParams();
+    const location = useLocation();
 
     useEffect(() => {
 
-        setPlayer({
-                    firstName:searchParams.get("firstName"),
+            if (location.state) {
+                setPlayer({
+                    firstName: searchParams.get("firstName"),
                     lastName: searchParams.get("lastName"),
                     position: searchParams.get("postion"),
-                    height: searchParams.get("height"),
-                    weight: searchParams.get("weight"),
-                    age: calculateAge(searchParams.get("birthDate")),
-                    highSchool: searchParams.get("highSchool"),
-                    description: searchParams.get("description"),
-                    stats: searchParams.get("stats"),
-                    imgUrl: searchParams.get("imgUrl"), //TODO: figure out how to mask img url and youtube url - base64 encode? cache? store in browser?
+                    height: location.state?.height,
+                    weight: location.state?.weight,
+                    age: calculateAge(location.state?.birthDate),
+                    highSchool: location.state?.highSchool,
+                    description: location.state?.description,
+                    stats: location.state?.stats,
+                    imgUrl: location.state?.imgUrl,
                     videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
                 })
+            } else if (searchParams.get("playerId")) {
+                // if navigating directly to page and state is empty
+                fetchPlayerById(searchParams.get("playerId")).then((data) => {
+                    setPlayer({
+                            firstName: data["first_name"],
+                            lastName: data["last_name"],
+                            position: data["position"],
+                            height: data["height"],
+                            weight: data["weight"],
+                            age: calculateAge(data["birth_date"]),
+                            highSchool: data["high_school"],
+                            description: data["description"],
+                            stats: data["player_stats"],
+                            imgUrl: data["image_url"],
+                            videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
+                        }
+                    )
+                })
 
-/*        fetchPlayerById(searchParams.get("playerId")).then((data) => {
-            setPlayer({
-                    firstName: data["first_name"],
-                    lastName: data["last_name"],
-                    position: data["position"],
-                    height: data["height"],
-                    weight: data["weight"],
-                    age: calculateAge(data["birth_date"]),
-                    highSchool: data["high_school"],
-                    description: data["description"],
-                    stats: data["player_stats"],
-                    imgUrl: data["image_url"],
-                    videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
-                }
-            )
-        })*/
+            }
 
-    }, []);
+            /*        fetchPlayerById(searchParams.get("playerId")).then((data) => {
+                        setPlayer({
+                                firstName: data["first_name"],
+                                lastName: data["last_name"],
+                                position: data["position"],
+                                height: data["height"],
+                                weight: data["weight"],
+                                age: calculateAge(data["birth_date"]),
+                                highSchool: data["high_school"],
+                                description: data["description"],
+                                stats: data["player_stats"],
+                                imgUrl: data["image_url"],
+                                videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
+                            }
+                        )
+                    })*/
+
+        }
+        ,
+        []
+    )
+    ;
     return (
         <Container fluid="md">
             <Row className="justify-content-center mt-5">
@@ -95,7 +121,7 @@ function PlayerProfile() {
                         <Card.Body>
                             <Card.Title>
                                 <span className="underlined-title">About</span>
-                                <FontAwesomeIcon  pull="right" icon={faInstagram}/>
+                                <FontAwesomeIcon pull="right" icon={faInstagram}/>
                                 <FontAwesomeIcon className="twitter" pull="right" icon={faTwitter}/>
                             </Card.Title>
                             <Card.Text>{player?.description}</Card.Text>
