@@ -38,7 +38,6 @@ function PlayerProfile() {
                     age: calculateAge(location.state?.birthDate),
                     highSchool: location.state?.highSchool,
                     description: location.state?.description,
-                    stats: location.state?.stats,
                     imgUrl: location.state?.imgUrl,
                     videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
                 })

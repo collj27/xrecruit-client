@@ -40,7 +40,7 @@ function HomePage() {
                     <Card.Body>
                         <Row xs={2} sm={2} md={3} lg={4} className="my-3">
                             {playerList?.map((player, idx) => (
-                                <Col key={idx}>
+                                <Col key={idx} lg={3}>
                                     <PlayerCard
                                         playerId={player["player_id"]}
                                         firstName={player["first_name"]}

@@ -9,23 +9,30 @@
     font-weight: 700;
     font-family: 'Jura';
     font-weight: 700;
-    font-size: 22px;
+    font-size: calc(10px + 1vw);
 }
 
 .playerCard-funds {
     font-family: 'Inter';
-    font-size: 20px;
+    font-size: calc(10px + 1vw);
 }
 
 .playerCard-name {
     font-family: 'Inter';
     font-weight: 700;
-    font-size: 24px;
+    font-size: calc(12px + 1vw);
 }
-.playerCard-image {
-    height:200px;
+
+.playerCard-image-container {
+    height:18vh;
 }
 
 .playerCard-image {
     object-fit: cover;
+    height: 100%;
+    width: 80%;
+    border-radius: 15px;
+}
+.btn btn-secondary {
+    font-size: calc(10px + 1vw) !important;
 }
