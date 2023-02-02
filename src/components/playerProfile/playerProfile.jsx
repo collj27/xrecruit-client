@@ -14,6 +14,7 @@ import {faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import ReactStars from "react-rating-stars-component/dist/react-stars";
 import PaymentButton from "../paymentButton/paymentButton";
 import {useLocation, useSearchParams} from "react-router-dom";
+import {Image} from "react-bootstrap";
 
 
 function PlayerProfile() {
@@ -79,7 +80,10 @@ function PlayerProfile() {
                 <Col xl={3}>
                     <Card>
                         {/*TODO: figure out proper image size}*/}
-                        <Card.Img variant="top" src={player?.imgUrl}/>
+                        {/*<Card.Img className="playerProfile-image" variant="top" src={player?.imgUrl}/>*/}
+                       <div className="playerProfile-image-container">
+                             <Image className="playerProfile-image" rounded="true" fluid="true" variant="top" src={player?.imgUrl}/>
+                        </div>
                         <Card.Body>
                             <Card.Title>
                                 <span>{player?.firstName} </span><span>{player?.lastName}</span>

@@ -35,6 +35,3 @@
     width: 80%;
     border-radius: 15px;
 }
-.btn btn-secondary {
-    font-size: calc(10px + 1vw) !important;
-}

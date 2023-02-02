@@ -1,3 +1,15 @@
 .playerProfile-attribute-title {
     color: #7A7A7A;
 }
+
+.playerProfile-image-container {
+    /*height:21vh;*/
+    text-align: center;
+}
+
+.playerProfile-image {
+    /*object-fit: cover;*/
+/*    height: 100%;
+    width: 100%;*/
+    margin-top: 1vh;
+}
