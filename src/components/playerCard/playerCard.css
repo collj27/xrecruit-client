@@ -7,7 +7,7 @@
 .playerCard-number-position {
     color: #B0B0B0;
     font-weight: 700;
-    font-family: 'Jura';
+    font-family: 'Jura', 'sans-serif';
     font-weight: 700;
     font-size: calc(10px + 1vw);
 }
@@ -15,12 +15,14 @@
 .playerCard-funds {
     font-family: 'Inter';
     font-size: calc(10px + 1vw);
+    color: #CFCECE;
 }
 
 .playerCard-name {
     font-family: 'Inter';
     font-weight: 700;
     font-size: calc(12px + 1vw);
+    color: #E3E3E3;
 }
 
 .playerCard-image-container {
