@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import {useEffect, useState} from "react";
 import '../app.css'
-import {fetchPlayerById} from "../../services/playerService";
+import {fetchPlayerById, fetchPlayerStats} from "../../services/playerService";
 import {calculateAge} from "../../utils/utils";
 import VideoPlayer from "../videoPlayer/videoPlayer";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -21,6 +21,8 @@ function PlayerProfile() {
     //player data
     const [player, setPlayer] = useState(null);
 
+    const [stats, setStats] = useState(null);
+
     const [searchParams] = useSearchParams();
     const location = useLocation();
 
@@ -30,7 +32,7 @@ function PlayerProfile() {
                 setPlayer({
                     firstName: searchParams.get("firstName"),
                     lastName: searchParams.get("lastName"),
-                    position: searchParams.get("postion"),
+                    position: searchParams.get("position"),
                     height: location.state?.height,
                     weight: location.state?.weight,
                     age: calculateAge(location.state?.birthDate),
@@ -58,25 +60,14 @@ function PlayerProfile() {
                         }
                     )
                 })
-
+                //TODO: fetch player AND stats at the same time - need to make a flask route that merges the two ORM objects
             }
 
-            /*        fetchPlayerById(searchParams.get("playerId")).then((data) => {
-                        setPlayer({
-                                firstName: data["first_name"],
-                                lastName: data["last_name"],
-                                position: data["position"],
-                                height: data["height"],
-                                weight: data["weight"],
-                                age: calculateAge(data["birth_date"]),
-                                highSchool: data["high_school"],
-                                description: data["description"],
-                                stats: data["player_stats"],
-                                imgUrl: data["image_url"],
-                                videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
-                            }
-                        )
-                    })*/
+            // get player stats
+            if (searchParams.get("playerId"))
+                fetchPlayerStats(searchParams.get("playerId")).then((data) => {
+                    setStats(data)
+                })
 
         }
         ,
@@ -132,7 +123,7 @@ function PlayerProfile() {
                     <Card>
                         <Card.Body>
                             <Card.Title><span className="underlined-title">Stats</span></Card.Title>
-                            <PlayerStats stats={player?.stats}></PlayerStats>
+                            <PlayerStats stats={stats}></PlayerStats>
                         </Card.Body>
                     </Card>
                 </Col>
