@@ -40,7 +40,7 @@ function HomePage() {
                     <Card.Body>
                         <Row xs={2} sm={2} md={3} lg={4} className="my-3">
                             {playerList?.map((player, idx) => (
-                                <Col key={idx} lg={3} className="my-3">
+                                <Col key={idx} md={6} lg={6} xl={3} className="my-3">
                                     <PlayerCard
                                         playerId={player["player_id"]}
                                         firstName={player["first_name"]}
@@ -60,15 +60,27 @@ function HomePage() {
                             ))}
                         </Row>
 
-                        {/*                        <Row md={4} className="my-3">
+                        <Row xs={2} sm={2} md={3} lg={4} className="my-3">
                             {playerList?.map((player, idx) => (
-                                <Col key={idx}>
-                                    <PlayerCard firstName={player["first_name"]} lastName={player["last_name"]}
-                                                imgUrl={player["image_url"]} position={player["position"]}></PlayerCard>
+                                <Col key={idx} md={6} lg={6} xl={3} className="my-3">
+                                    <PlayerCard
+                                        playerId={player["player_id"]}
+                                        firstName={player["first_name"]}
+                                        lastName={player["last_name"]}
+                                        imgUrl={player["image_url"]}
+                                        position={player["position"]}
+                                        height={player["height"]}
+                                        weight={player["weight"]}
+                                        description={player["description"]}
+                                        stats={player["stats"]}
+                                        birthDate={player["birth_date"]
+                                        }
+                                         highSchool={player["high_school"]}
+
+                                    ></PlayerCard>
                                 </Col>
                             ))}
-                        </Row>*/}
-
+                        </Row>
                     </Card.Body>
                 </Card>
             </Row>

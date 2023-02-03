@@ -1,8 +1,8 @@
 /* Navbar */
-.navbar {
+.navbar, .navbar-brand {
     font-family: 'Jura', 'Inter', sans-serif;
     background: #414141;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
 }
 
 .nav-link {

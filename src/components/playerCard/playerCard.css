@@ -5,25 +5,25 @@
 }
 
 .playerCard-number-position {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #B0B0B0;
     font-weight: 700;
     font-family: 'Jura', sans-serif;
 }
 
 .playerCard-funds {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #CFCECE;
 }
 
 .playerCard-name {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #E3E3E3;
 }
 
 .playerCard-image-container {
-    height: 18vh;
+    height:8.8rem /*18vh*/;
 }
 
 .playerCard-image {

@@ -39,7 +39,7 @@ function PlayerCard(props) {
     return (
         <Card className="playerCard">
             <Card.Body>
-                <Row>
+                <Row >
                     <Col className="playerCard-image-container">
                         <Image className="playerCard-image" rounded="true" src={props.imgUrl}/>
                     </Col>
@@ -50,7 +50,7 @@ function PlayerCard(props) {
                         </Stack>
                     </Col>
                 </Row>
-                <Row >
+                <Row>
                     <Col>
                         <Stack>
                             <span className="playerCard-name">{props.firstName + " " + props.lastName}</span>
