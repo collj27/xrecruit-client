@@ -40,7 +40,7 @@ function HomePage() {
                     <Card.Body>
                         <Row className="my-3">
                             {playerList?.map((player, idx) => (
-                                <Col key={idx} md={6} lg={6} xl={3} className="my-3">
+                                <Col key={idx} xs={12} sm={12} md={6} lg={6} xl={3} className="my-3">
                                     <PlayerCard
                                         playerId={player["player_id"]}
                                         firstName={player["first_name"]}
@@ -62,7 +62,7 @@ function HomePage() {
 
                         <Row className="my-3">
                             {playerList?.map((player, idx) => (
-                                <Col key={idx} md={6} lg={6} xl={3} className="my-3">
+                                <Col key={idx} xs={12} sm={12} md={6} lg={6} xl={3} className="my-3">
                                     <PlayerCard
                                         playerId={player["player_id"]}
                                         firstName={player["first_name"]}
