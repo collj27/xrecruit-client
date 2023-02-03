@@ -8,6 +8,7 @@ import PlayerProfile from "./playerProfile/playerProfile";
 import SchoolProfile from "./schoolProfile/schoolProfile";
 import PaymentConfirmation from "./paymentConfirmation/paymentConfirmation";
 import {LinkContainer} from 'react-router-bootstrap'
+import HomePage from "./homePage/homePage";
 
 
 class App extends Component {
@@ -21,24 +22,25 @@ class App extends Component {
                         <Navbar.Toggle variant="light"/>
                         <Navbar.Collapse>
                             <Nav>
-                                <LinkContainer to="/">
-                                    <Nav.Link>Home</Nav.Link>
-                                </LinkContainer>
+                                {/*<LinkContainer to="/">*/}
+                                {/*    <Nav.Link>Home</Nav.Link>*/}
+                                {/*</LinkContainer>*/}
                                 <LinkContainer to="/">
                                     <Nav.Link>Players</Nav.Link>
                                 </LinkContainer>
                                 <LinkContainer to="/schools">
                                     <Nav.Link>Schools</Nav.Link>
                                 </LinkContainer>
-                                <LinkContainer to="/">
+{/*                                <LinkContainer to="/">
                                     <Nav.Link>Donate</Nav.Link>
-                                </LinkContainer>
+                                </LinkContainer>*/}
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
                 <Routes>
-                    <Route exact path='/' element={<PlayerProfile/>}></Route>
+                    <Route exact path='/' element={<HomePage/>}></Route>
+                    <Route exact path='/playerProfile' element={<PlayerProfile/>}></Route>
                     <Route exact path='/schools' element={<SchoolProfile/>}></Route>
                     <Route exact path='/paymentConfirmation' element={<PaymentConfirmation/>}></Route>
                 </Routes>

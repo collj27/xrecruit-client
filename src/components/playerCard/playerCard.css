@@ -1,0 +1,33 @@
+.playerCard {
+    background-color: #5B5B5B !important;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.playerCard-number-position {
+    font-size: 1.3rem;
+    color: #B0B0B0;
+    font-weight: 700;
+    font-family: 'Jura', sans-serif;
+}
+
+.playerCard-funds {
+    font-size: 1.3rem;
+    color: #CFCECE;
+}
+
+.playerCard-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #E3E3E3;
+}
+
+.playerCard-image-container {
+    height:8.8rem /*18vh*/;
+}
+
+.playerCard-image {
+    object-fit: cover;
+    height: 100%;
+    width: 80%;
+}

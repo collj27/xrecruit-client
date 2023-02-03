@@ -1,3 +1,11 @@
 .playerProfile-attribute-title {
     color: #7A7A7A;
 }
+
+.playerProfile-image-container {
+    text-align: center;
+}
+
+.playerProfile-image {
+    margin-top: 1vh;
+}

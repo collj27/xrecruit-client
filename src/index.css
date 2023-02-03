@@ -1,11 +1,11 @@
-/* default font style*/
 body {
     background-color:  #1E1E1E !important;
 }
 
+
 body > * {
-    font-family: 'Inter', 'Jura', sans-serif;
-    font-style: normal;
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
     color: #FBFBFB;
 }
+
