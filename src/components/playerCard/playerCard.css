@@ -5,19 +5,19 @@
 }
 
 .playerCard-number-position {
-    font-size: calc(10px + 1vw);
+    font-size: 1.5rem;
     color: #B0B0B0;
     font-weight: 700;
     font-family: 'Jura', sans-serif;
 }
 
 .playerCard-funds {
-    font-size: calc(10px + 1vw);
+    font-size: 1.5rem;
     color: #CFCECE;
 }
 
 .playerCard-name {
-    font-size: calc(12px + 1vw);
+    font-size: 1.7rem;
     font-weight: 700;
     color: #E3E3E3;
 }

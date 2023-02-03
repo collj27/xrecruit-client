@@ -2,7 +2,7 @@
 .navbar {
     font-family: 'Jura', 'Inter', sans-serif;
     background: #414141;
-    font-size: 18px;
+    font-size: 1.1rem;
 }
 
 .nav-link {
@@ -25,7 +25,7 @@
 .card .card-body .card-title, .card .card-header {
     /* font size of titles*/
     font-weight: 700;
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 .card .card-body .card-title > .underlined-title, .card .card-header > .underlined-title {
