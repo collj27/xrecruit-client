@@ -5,33 +5,29 @@
 }
 
 .playerCard-number-position {
+    font-size: calc(10px + 1vw);
     color: #B0B0B0;
     font-weight: 700;
-    font-family: 'Jura', 'sans-serif';
-    font-weight: 700;
-    font-size: calc(10px + 1vw);
+    font-family: 'Jura', sans-serif;
 }
 
 .playerCard-funds {
-    font-family: 'Inter';
     font-size: calc(10px + 1vw);
     color: #CFCECE;
 }
 
 .playerCard-name {
-    font-family: 'Inter';
-    font-weight: 700;
     font-size: calc(12px + 1vw);
+    font-weight: 700;
     color: #E3E3E3;
 }
 
 .playerCard-image-container {
-    height:18vh;
+    height: 18vh;
 }
 
 .playerCard-image {
     object-fit: cover;
     height: 100%;
     width: 80%;
-    border-radius: 15px;
 }

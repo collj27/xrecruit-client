@@ -41,12 +41,12 @@ function PlayerCard(props) {
             <Card.Body>
                 <Row>
                     <Col className="playerCard-image-container">
-                        <Image className="playerCard-image" src={props.imgUrl}/>
+                        <Image className="playerCard-image" rounded="true" src={props.imgUrl}/>
                     </Col>
                     <Col xs={4} className="text-end">
-                        <Stack>
-                            <span className="playerCard-number-position">#8</span>
-                            <span className="playerCard-number-position">{props.position}</span>
+                        <Stack className="playerCard-number-position">
+                            <span>#8</span>
+                            <span>{props.position}</span>
                         </Stack>
                     </Col>
                 </Row>
@@ -55,7 +55,6 @@ function PlayerCard(props) {
                         <Stack>
                             <span className="playerCard-name">{props.firstName + " " + props.lastName}</span>
                             <span className="playerCard-funds">$350k Raised</span>
-                              {/*<span className="playerCard-funds">203 Donors</span>*/}
                             <Row className="align-items-start">
                                 <Col>
                                     <span className="playerCard-funds">203 Donors</span>
