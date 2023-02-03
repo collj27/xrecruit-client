@@ -77,7 +77,7 @@ function PlayerProfile() {
     return (
         <Container fluid="md">
             <Row className="justify-content-center mt-5">
-                <Col xl={3}>
+                <Col md={4} xl={3} className="my-3">
                     <Card>
                         {/*TODO: figure out proper image size}*/}
                         {/*<Card.Img className="playerProfile-image" variant="top" src={player?.imgUrl}/>*/}
@@ -110,7 +110,7 @@ function PlayerProfile() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col>
+                <Col md={8} xl={4} className="my-3">
                     <Card>
                         <Card.Body>
                             <Card.Title>
@@ -122,7 +122,7 @@ function PlayerProfile() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col xl={5}>
+                <Col xl={5} className="my-3">
                     <Card>
                         <Card.Body>
                             <Card.Title><span className="underlined-title">Stats</span></Card.Title>
