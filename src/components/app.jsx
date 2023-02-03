@@ -22,18 +22,18 @@ class App extends Component {
                         <Navbar.Toggle variant="light"/>
                         <Navbar.Collapse>
                             <Nav>
-                                <LinkContainer to="/">
-                                    <Nav.Link>Home</Nav.Link>
-                                </LinkContainer>
+                                {/*<LinkContainer to="/">*/}
+                                {/*    <Nav.Link>Home</Nav.Link>*/}
+                                {/*</LinkContainer>*/}
                                 <LinkContainer to="/">
                                     <Nav.Link>Players</Nav.Link>
                                 </LinkContainer>
                                 <LinkContainer to="/schools">
                                     <Nav.Link>Schools</Nav.Link>
                                 </LinkContainer>
-                                <LinkContainer to="/">
+{/*                                <LinkContainer to="/">
                                     <Nav.Link>Donate</Nav.Link>
-                                </LinkContainer>
+                                </LinkContainer>*/}
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
