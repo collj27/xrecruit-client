@@ -28,7 +28,8 @@ function PlayerCard(props) {
                     height: props.height,
                     weight: props.weight,
                     birthDate: props.birthDate,
-                    highSchool: props.highSchool
+                    highSchool: props.highSchool,
+                    videoUrl: props.videoUrl
                 }
             }
         )
