@@ -40,7 +40,7 @@ function PlayerProfile() {
                     highSchool: location.state?.highSchool,
                     description: location.state?.description,
                     imgUrl: location.state?.imgUrl,
-                    videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
+                    videoUrl: location.state?.videoUrl
                 })
             } else if (searchParams.get("playerId")) {
                 // if navigating directly to page and state is empty
@@ -56,7 +56,7 @@ function PlayerProfile() {
                             description: data["description"],
                             stats: data["player_stats"],
                             imgUrl: data["image_url"],
-                            videoUrl: "https://www.youtube.com/watch?v=JWVQF5_gkfk"
+                            videoUrl: data["video_url"]
                         }
                     )
                 })

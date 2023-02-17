@@ -51,10 +51,9 @@ function HomePage() {
                                         weight={player["weight"]}
                                         description={player["description"]}
                                         stats={player["stats"]}
-                                        birthDate={player["birth_date"]
-                                        }
-                                         highSchool={player["high_school"]}
-
+                                        birthDate={player["birth_date"]}
+                                        highSchool={player["high_school"]}
+                                        videoUrl={player["video_url"]}
                                     ></PlayerCard>
                                 </Col>
                             ))}
@@ -73,10 +72,9 @@ function HomePage() {
                                         weight={player["weight"]}
                                         description={player["description"]}
                                         stats={player["stats"]}
-                                        birthDate={player["birth_date"]
-                                        }
-                                         highSchool={player["high_school"]}
-
+                                        birthDate={player["birth_date"]}
+                                        highSchool={player["high_school"]}
+                                        videoUrl={player["video_url"]}
                                     ></PlayerCard>
                                 </Col>
                             ))}
